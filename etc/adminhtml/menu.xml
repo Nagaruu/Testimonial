@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="AHT_Testimonials::testimonials" title="Testimonials" module="AHT_Testimonials" sortOrder="51" resource="AHT_Testimonials::testimonials"/>
+        <add id="AHT_Testimonials::post" title="Testimonial" module="AHT_Testimonials" sortOrder="10" action="AHT_Testimonials/post" resource="AHT_Testimonials::post" parent="AHT_Testimonials::testimonials"/>
+        <add id="AHT_Testimonials::testimonials_configuration" title="Configuration" module="AHT_Testimonials" sortOrder="99" parent="AHT_Testimonials::testimonials" action="adminhtml/system_config/edit/section/testimonials" resource="AHT_Testimonials::testimonials_configuration"/>
+    </menu>
+</config>
