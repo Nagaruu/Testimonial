@@ -9,9 +9,9 @@ class InstallSchema implements InstallSchemaInterface {
 		\Magento\Framework\Setup\ModuleContextInterface $context) {
 		$installer = $setup;
 		$installer->startSetup();
-		if (!$installer->tableExists('AHT_Testimonials_post')) {
+		if (!$installer->tableExists('aht_testimonials')) {
 			$table = $installer->getConnection()->newTable(
-				$installer->getTable('AHT_Testimonials_post')
+				$installer->getTable('aht_testimonials')
 			)
 				->addColumn(
 				'id',
@@ -64,9 +64,9 @@ class InstallSchema implements InstallSchemaInterface {
 			$installer->getConnection()->createTable($table);
 
 			$installer->getConnection()->addIndex(
-				$installer->getTable('AHT_Testimonials_post'),
+				$installer->getTable('aht_testimonials'),
 				$setup->getIdxName(
-					$installer->getTable('AHT_Testimonials_post'),
+					$installer->getTable('aht_testimonials'),
 					['name'],
 					\Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_FULLTEXT
 				),

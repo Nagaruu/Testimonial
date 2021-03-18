@@ -5,7 +5,7 @@ namespace AHT\Testimonials\Model\ResourceModel\Testimonials;
 class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection
 {
     protected $_idFieldName = 'id';
-    protected $_eventPrefix = 'AHT_Testimonials_post';
+    protected $_eventPrefix = 'aht_testimonials';
     protected $_eventObject = 'testimonials_collection';
 
     /**

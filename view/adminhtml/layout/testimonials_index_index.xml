@@ -7,7 +7,7 @@
     </referenceBlock>
     <body>
         <referenceContainer name="content">
-            <block class="Magento\Backend\Block\Template" template="AHT_Testimonials::index.phtml"/>
+            <uiComponent name="aht_testimonials_listing"/>
         </referenceContainer>
     </body>
 </page>

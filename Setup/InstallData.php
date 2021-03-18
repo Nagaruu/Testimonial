@@ -19,7 +19,7 @@ class InstallData implements InstallDataInterface
         ];
 
         foreach ($data as $value) {
-            $setup->getConnection()->insertForce($setup->getTable('AHT_Testimonials_post'), $value);
+            $setup->getConnection()->insertForce($setup->getTable('aht_testimonials'), $value);
         }
     }
 }

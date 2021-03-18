@@ -3,10 +3,21 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <!-- <preference for="AHT\Testimonials\Api\Data\TestimonialsSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/> -->
 
-    <virtualType name="AHT\Testimonials\Model\ResourceModel\Testimonials\Collection">
+    <virtualType name="AHT\Testimonials\Model\ResourceModel\Testimonials\Grid\Collection">
         <arguments>
             <argument name="mainTable" xsi:type="string">AHT_Testimonials</argument>
             <argument name="resourceModel" xsi:type="string">AHT\Testimonials\Model\ResourceModel\Testimonials</argument>
+            <argument name="eventPrefix" xsi:type="string">AHT_Testimonials_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">field_grid_collection</argument>
         </arguments>
     </virtualType>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="aht_testimonials_listing_data_source" xsi:type="string">AHT\Testimonials\Model\ResourceModel\Testimonials\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
 </config>

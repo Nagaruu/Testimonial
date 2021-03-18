@@ -21,7 +21,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
         $installer->startSetup();
         if (version_compare($context->getVersion(), '1.0.1', '<')) {
           $installer->getConnection()->addColumn(
-                $installer->getTable('AHT_Testimonials_post'),
+                $installer->getTable('aht_testimonials'),
                 'category_depth',
                 [
                     'type' => \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
@@ -33,7 +33,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
         }
         if (version_compare($context->getVersion(), '1.0.2', '<')) {
             $installer->getConnection()->addColumn(
-                  $installer->getTable('AHT_Testimonials_post'),
+                  $installer->getTable('aht_testimonials'),
                   'test',
                   [
                       'type' => \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,

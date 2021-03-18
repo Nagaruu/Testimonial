@@ -1,9 +1,9 @@
 <?php
-
 namespace AHT\Testimonials\Block\Frontend;
 
 use Magento\Framework\View\Element\Template;
 use Magento\Widget\Block\BlockInterface;
+use AHT\Testimonials\Model\ResourceModel\Testimonials\Grid\CollectionFactory;
 
 class Index extends Template implements BlockInterface
 {
@@ -12,30 +12,31 @@ class Index extends Template implements BlockInterface
     public $_customerSession;
 
     public function __construct(
-        \AHT\Testimonials\Model\ResourceModel\Testimonials\CollectionFactory $testimonialsCollectionFactory,
+        CollectionFactory $testimonialsCollectionFactory,
         \Magento\Framework\View\Element\Template\Context $context,
         \Magento\Customer\Model\Session $customerSession,  
         array $data = []
+
     )
     {
         parent::__construct($context, $data);
         $this->_customerSession = $customerSession;
         $this->_collection =  $testimonialsCollectionFactory->create();
-        echo "abc";
     }
 
-    // public function getDataBlocks()
-    // {
-    //     $testimonials = $this->_collection;
-    //     $items = $testimonials->getItems();
-    //     foreach($items as $item)
-    //     { 
-    //         $itemData = $item->getData();
-    //         $this->_loadedData[$item->getId()] = $itemData;
-    //     }
+    public function getDataBlocks()
+    {
 
-    //     return $this->_loadedData;
-    // }
+        $portfolio = $this->_collection;
+        $items = $portfolio->getItems();
+        foreach($items as $item)
+        { 
+            $itemData = $item->getData();
+            $this->_loadedData[$item->getId()] = $itemData;
+        }
+
+        return $this->_loadedData;
+    }
 
     public function getStoreManager(){
         return $this->_storeManager;

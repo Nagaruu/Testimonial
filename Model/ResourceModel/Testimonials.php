@@ -12,6 +12,6 @@ class Testimonials extends AbstractDb {
 	}
 
 	protected function _construct() {
-		$this->_init('AHT_Testimonials_post', 'id');
+		$this->_init('aht_testimonials', 'id');
 	}
 }
