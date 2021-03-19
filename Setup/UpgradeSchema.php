@@ -34,12 +34,12 @@ class UpgradeSchema implements UpgradeSchemaInterface
         if (version_compare($context->getVersion(), '1.0.2', '<')) {
             $installer->getConnection()->addColumn(
                   $installer->getTable('aht_testimonials'),
-                  'test',
+                  'image',
                   [
-                      'type' => \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
-                      'length' => 10,
-                      'nullable' => true,
-                      'comment' => 'Category Depth'
+                      'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                      'length' => 255,
+                      'nullable' => false,
+                      'comment' => 'Image'
                   ]
               );
           }

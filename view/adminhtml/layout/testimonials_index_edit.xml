@@ -7,7 +7,7 @@
     </referenceBlock>
     <body>
         <referenceContainer name="content">
-            <uiComponent name="aht_testimonials_listing"/>
+            <uiComponent name="aht_testimonials_form"/>
         </referenceContainer>
     </body>
 </page>

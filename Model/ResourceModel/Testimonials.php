@@ -2,9 +2,7 @@
 
 namespace AHT\Testimonials\Model\ResourceModel;
 
-use \Magento\Framework\Model\ResourceModel\Db\AbstractDb;
-
-class Testimonials extends AbstractDb {
+class Testimonials extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb {
 	public function __construct(
 		\Magento\Framework\Model\ResourceModel\Db\Context $context
 	) {

@@ -73,3 +73,4 @@ class DataProvider extends \Magento\Ui\DataProvider\ModifierPoolDataProvider
         return $this->_loadedData;
     }
 }
+ 

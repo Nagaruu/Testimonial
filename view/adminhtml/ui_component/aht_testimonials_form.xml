@@ -8,33 +8,33 @@
 <form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
-            <item name="provider" xsi:type="string">cms_page_form.page_form_data_source</item>
+            <item name="provider" xsi:type="string">aht_testimonials_form.aht_testimonials_data_source</item>
         </item>
         <item name="label" xsi:type="string" translate="true">Page Information</item>
         <item name="template" xsi:type="string">templates/form/collapsible</item>
     </argument>
     <settings>
         <buttons>
-            <button name="save" class="Magento\Cms\Block\Adminhtml\Page\Edit\SaveButton"/>
-            <button name="delete" class="Magento\Cms\Block\Adminhtml\Page\Edit\DeleteButton"/>
-            <button name="back" class="Magento\Cms\Block\Adminhtml\Page\Edit\BackButton"/>
+            <button name="save" class="AHT\Testimonials\Block\Adminhtml\Testimonials\Edit\SaveButton"/>
+            <button name="delete" class="AHT\Testimonials\Block\Adminhtml\Testimonials\Edit\DeleteButton"/>
+            <button name="back" class="AHT\Testimonials\Block\Adminhtml\Testimonials\Edit\BackButton"/>
         </buttons>
-        <namespace>cms_page_form</namespace>
+        <namespace>aht_testimonials_form</namespace>
         <dataScope>data</dataScope>
         <deps>
-            <dep>cms_page_form.page_form_data_source</dep>
+            <dep>aht_testimonials_form.aht_testimonials_data_source</dep>
         </deps>
     </settings>
-    <dataSource name="page_form_data_source">
+    <dataSource name="aht_testimonials_data_source">
         <argument name="data" xsi:type="array">
             <item name="js_config" xsi:type="array">
                 <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
             </item>
         </argument>
         <settings>
-            <submitUrl path="cms/page/save"/>
+            <submitUrl path="testimonials/index/save"/>
         </settings>
-        <dataProvider class="Magento\Cms\Model\Page\DataProvider" name="page_form_data_source">
+        <dataProvider class="Magento\Cms\Model\Page\DataProvider" name="aht_testimonials_data_source">
             <settings>
                 <requestFieldName>id</requestFieldName>
                 <primaryFieldName>id</primaryFieldName>
@@ -66,7 +66,7 @@
             </argument>
             <settings>
                 <dataType>boolean</dataType>
-                <label translate="true">Enable Page</label>
+                <label translate="true">Enable Testimonial</label>
                 <dataScope>is_active</dataScope>
             </settings>
             <formElements>
@@ -81,7 +81,7 @@
                 </checkbox>
             </formElements>
         </field>
-        <field name="title" sortOrder="20" formElement="input">
+        <field name="name" sortOrder="20" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">page</item>
@@ -92,8 +92,8 @@
                     <rule name="required-entry" xsi:type="boolean">true</rule>
                 </validation>
                 <dataType>text</dataType>
-                <label translate="true">Page Title</label>
-                <dataScope>title</dataScope>
+                <label translate="true">Name</label>
+                <dataScope>name</dataScope>
             </settings>
         </field>
     </fieldset>

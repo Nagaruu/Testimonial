@@ -20,4 +20,7 @@
         </arguments>
     </type>
 
+    <!-- <preference for='AHT\Testimonials\Api\Data\TestimonialsInterface' type='AHT\Testimonials\Model\Testimonials' /> -->
+    <preference for='AHT\Testimonials\Api\TestimonialsRepositoryInterface' type='AHT\Testimonials\Model\TestimonialsRepository' />
+
 </config>

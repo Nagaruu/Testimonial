@@ -209,7 +209,19 @@
                 <label translate="true">Contact</label>
             </settings>
         </column>
-        <actionsColumn name="actions" class="Magento\Cms\Ui\Component\Listing\Column\PageActions">
+        <column name="image">
+            <settings>
+                <filter>text</filter>
+                <editor>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">true</rule>
+                    </validation>
+                    <!-- <editorType>text</editorType> -->
+                </editor>
+                <label translate="true">Image</label>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="AHT\Testimonials\Ui\Component\Listing\Column\PageActions">
             <settings>
                 <indexField>id</indexField>
                 <resizeEnabled>false</resizeEnabled>
