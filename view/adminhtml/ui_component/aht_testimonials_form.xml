@@ -128,7 +128,7 @@
                 <dataScope>designation</dataScope>
             </settings>
         </field>
-        <field name="contact" sortOrder="22" formElement="input">
+        <field name="contact" sortOrder="23" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">page</item>
@@ -140,7 +140,7 @@
                 <dataScope>contact</dataScope>
             </settings>
         </field>
-        <field name="message" sortOrder="23" formElement="input">
+        <field name="message" sortOrder="24" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">page</item>
@@ -151,6 +151,34 @@
                 <label translate="true">Message</label>
                 <dataScope>message</dataScope>
             </settings>
+        </field>
+        <field name="image" sortOrder="25" formElement="imageUploader" >
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">index</item>
+                </item>
+            </argument>
+            <settings>
+                <elementTmpl>ui/form/element/uploader/image</elementTmpl>
+                <dataType>string</dataType>
+                <label translate="true">Image</label>
+                <visible>true</visible>
+                <required>false</required>
+            </settings>
+            <formElements>
+                <imageUploader>
+                    <settings>
+                        <required>false</required>
+                        <uploaderConfig>
+                            <param xsi:type="url" name="url" path="testimonials/index"/>
+                        </uploaderConfig>
+                        <openDialogTitle>Media Gallery</openDialogTitle>
+                        <initialMediaGalleryOpenSubpath>testimonials/index</initialMediaGalleryOpenSubpath>
+                        <allowedExtensions>jpg jpeg gif png</allowedExtensions>
+                        <maxFileSize>4194304</maxFileSize>
+                    </settings>
+                </imageUploader>
+            </formElements>
         </field>
     </fieldset>
 </form>
