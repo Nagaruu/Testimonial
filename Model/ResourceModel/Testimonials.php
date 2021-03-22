@@ -9,6 +9,7 @@ class Testimonials extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb 
 		parent::__construct($context);
 	}
 
+	// Main table and primary key
 	protected function _construct() {
 		$this->_init('aht_testimonials', 'id');
 	}

@@ -41,7 +41,7 @@ class GenericButton
      *
      * @return int|null
      */
-    public function getPageId()
+    public function getTestimonialsId()
     {
         try {
             return $this->pageRepository->getById(

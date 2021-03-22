@@ -7,123 +7,123 @@ use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
-use AHT\Testimonials\Model\ResourceModel\Testimonials as ResourcePost;
-use AHT\Testimonials\Model\ResourceModel\Testimonials\CollectionFactory as PostCollectionFactory;
+use AHT\Testimonials\Model\ResourceModel\Testimonials as ResourceTestimonials;
+use AHT\Testimonials\Model\ResourceModel\Testimonials\CollectionFactory as TestimonialsCollectionFactory;
 
 /**
- * Class PostRepository
+ * Class TestimonialsRepository
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class TestimonialsRepository implements TestimonialsRepositoryInterface
 {
     /**
-     * @var ResourcePost
+     * @var ResourceTestimonials
      */
     protected $resource;
 
     /**
-     * @var PostFactory
+     * @var TestimonialsFactory
      */
-    protected $PostFactory;
+    protected $TestimonialsFactory;
 
     /**
-     * @var PostCollectionFactory
+     * @var TestimonialsCollectionFactory
      */
-    protected $PostCollectionFactory;
+    protected $TestimonialsCollectionFactory;
 
     /**
-     * @var Data\PostSearchResultsInterfaceFactory
+     * @var Data\TestimonialsSearchResultsInterfaceFactory
      */
     protected $searchResultsFactory;
     /**
-     * @param ResourcePost $resource
-     * @param PostFactory $PostFactory
-     * @param Data\TestimonialsInterfaceFactory $dataPostFactory
-     * @param PostCollectionFactory $PostCollectionFactory
-     * @param Data\PostSearchResultsInterfaceFactory $searchResultsFactory
+     * @param ResourceTestimonials $resource
+     * @param TestimonialsFactory $TestimonialsFactory
+     * @param Data\TestimonialsInterfaceFactory $dataTestimonialsFactory
+     * @param TestimonialsCollectionFactory $TestimonialsCollectionFactory
+     * @param Data\TestimonialsSearchResultsInterfaceFactory $searchResultsFactory
      */
     private $collectionProcessor;
 
     public function __construct(
-        ResourcePost $resource,
-        TestimonialsFactory $PostFactory,
-        // Data\TestimonialsInterfaceFactory $dataPostFactory,
-        PostCollectionFactory $PostCollectionFactory
+        ResourceTestimonials $resource,
+        TestimonialsFactory $TestimonialsFactory,
+        // Data\TestimonialsInterfaceFactory $dataTestimonialsFactory,
+        TestimonialsCollectionFactory $TestimonialsCollectionFactory
     ) {
         $this->resource = $resource;
-        $this->PostFactory = $PostFactory;
-        $this->PostCollectionFactory = $PostCollectionFactory;
+        $this->TestimonialsFactory = $TestimonialsFactory;
+        $this->TestimonialsCollectionFactory = $TestimonialsCollectionFactory;
         // $this->searchResultsFactory = $searchResultsFactory;
         // $this->collectionProcessor = $collectionProcessor ?: $this->getCollectionProcessor();
     }
 
     /**
-     * Save Post data
+     * Save Testimonials data
      *
-     * @param \AHT\Testimonials\Api\Data\TestimonialsInterface $Post
-     * @return Post
+     * @param \AHT\Testimonials\Api\Data\TestimonialsInterface $Testimonials
+     * @return Testimonials
      * @throws CouldNotSaveException
      */
-    public function save(\AHT\Testimonials\Api\Data\TestimonialsInterface $post)
+    public function save(\AHT\Testimonials\Api\Data\TestimonialsInterface $testimonials)
     {
 
         try {
-            $this->resource->save($post);
+            $this->resource->save($testimonials);
         } catch (\Exception $exception) {
             throw new CouldNotSaveException(
-                __('Could not save the Post: %1', $exception->getMessage()),
+                __('Could not save the Testimonials: %1', $exception->getMessage()),
                 $exception
             );
         }
-        return $post;
+        return $testimonials;
     }
 
     /**
-     * Load Post data by given Post Identity
+     * Load Testimonials data by given Testimonials Identity
      *
-     * @param string $PostId
-     * @return Post
+     * @param string $TestimonialsId
+     * @return Testimonials
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
-    public function getById($PostId)
+    public function getById($testimonialsId)
     {
-        $Post = $this->PostFactory->create();
-        $Post->load($PostId);
-        if (!$Post->getId()) {
-            throw new NoSuchEntityException(__('The CMS Post with the "%1" ID doesn\'t exist.', $PostId));
+        $testimonials = $this->TestimonialsFactory->create();
+        $testimonials->load($testimonialsId);
+        if (!$testimonials->getId()) {
+            throw new NoSuchEntityException(__('The CMS Testimonials with the "%1" ID doesn\'t exist.', $testimonialsId));
         }
-        return $Post;
+        return $testimonials;
     }
 
     /**
-     * Load Post data collection by given search criteria
+     * Load Testimonials data collection by given search criteria
      *
      * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      * @SuppressWarnings(PHPMD.NPathComplexity)
      * @param \Magento\Framework\Api\SearchCriteriaInterface $criteria
-     * @return \AHT\Testimonials\Api\Data\PostSearchResultsInterface
+     * @return \AHT\Testimonials\Api\Data\TestimonialsSearchResultsInterface
      */
     public function getList()
     {
-        /** @var \AHT\Testimonials\Model\ResourceModel\Post\Collection $collection */
-        $collection = $this->PostCollectionFactory->create();
+        /** @var \AHT\Testimonials\Model\ResourceModel\Testimonials\Collection $collection */
+        $collection = $this->TestimonialsCollectionFactory->create();
         return $collection;
     }
 
     /**
-     * Delete Post
+     * Delete Testimonials
      *
-     * @param \AHT\Testimonials\Api\Data\TestimonialsInterface $Post
+     * @param \AHT\Testimonials\Api\Data\TestimonialsInterface $Testimonials
      * @return bool
      * @throws CouldNotDeleteException
      */
-    public function delete(\AHT\Testimonials\Api\Data\TestimonialsInterface $Post)
+    public function delete(\AHT\Testimonials\Api\Data\TestimonialsInterface $testimonials)
     {
         try {
-            $this->resource->delete($Post);
+            $this->resource->delete($testimonials);
         } catch (\Exception $exception) {
             throw new CouldNotDeleteException(__(
-                'Could not delete the Post: %1',
+                'Could not delete the Testimonials: %1',
                 $exception->getMessage()
             ));
         }
@@ -131,15 +131,15 @@ class TestimonialsRepository implements TestimonialsRepositoryInterface
     }
 
     /**
-     * Delete Post by given Post Identity
+     * Delete Testimonials by given Testimonials Identity
      *
-     * @param string $PostId
+     * @param string $testimonialsId
      * @return bool
      * @throws CouldNotDeleteException
      * @throws NoSuchEntityException
      */
-    public function deleteById($PostId)
+    public function deleteById($testimonialsId)
     {
-        return $this->delete($this->getById($PostId));
+        return $this->delete($this->getById($testimonialsId));
     }
 }

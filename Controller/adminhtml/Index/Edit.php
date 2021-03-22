@@ -49,6 +49,8 @@ class Edit extends \Magento\Cms\Controller\Adminhtml\Block implements HttpGetAct
         // 2. Initial checking
         if ($id) {
             $model->load($id);
+            // var_dump($model->getData());
+            // die();
             if (!$model->getId()) {
                 $this->messageManager->addErrorMessage(__('This block no longer exists.'));
                 /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
@@ -68,6 +70,7 @@ class Edit extends \Magento\Cms\Controller\Adminhtml\Block implements HttpGetAct
         );
         $resultPage->getConfig()->getTitle()->prepend(__('testimonials'));
         $resultPage->getConfig()->getTitle()->prepend($model->getId() ? $model->getTitle() : __('New testimonials'));
+
         return $resultPage;
     }
 }

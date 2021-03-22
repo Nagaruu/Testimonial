@@ -1,43 +1,36 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-/**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- */
--->
-<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+<listing
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
-            <item name="provider" xsi:type="string">cms_block_listing.cms_block_listing_data_source</item>
+            <item name="provider" xsi:type="string">aht_testimonials_listing.aht_testimonials_listing_data_source</item>
+            <item name="deps" xsi:type="string">aht_testimonials_listing.aht_testimonials_listing_data_source</item>
+        </item>
+        <item name="spinner" xsi:type="string">aht_testimonials_columns</item>
+        <item name="buttons" xsi:type="array">
+            <item name="add" xsi:type="array">
+                <item name="name" xsi:type="string">add</item>
+                <item name="label" xsi:type="string" translate="true">Add New Blog</item>
+                <item name="class" xsi:type="string">primary</item>
+                <item name="url" xsi:type="string">*/*/create</item>
+            </item>
         </item>
     </argument>
-    <settings>
-        <buttons>
-            <button name="add">
-                <url path="*/*/new"/>
-                <class>primary</class>
-                <label translate="true">Add New Block</label>
-            </button>
-        </buttons>
-        <spinner>cms_block_columns</spinner>
-        <deps>
-            <dep>cms_block_listing.cms_block_listing_data_source</dep>
-        </deps>
-    </settings>
-    <dataSource name="cms_block_listing_data_source" component="Magento_Ui/js/grid/provider">
-        <settings>
-            <storageConfig>
-                <param name="indexField" xsi:type="string">block_id</param>
-            </storageConfig>
-            <updateUrl path="mui/index/render"/>
-        </settings>
-        <aclResource>Magento_Cms::block</aclResource>
-        <dataProvider class="Magento\Cms\Ui\Component\DataProvider" name="cms_block_listing_data_source">
-            <settings>
-                <requestFieldName>id</requestFieldName>
-                <primaryFieldName>block_id</primaryFieldName>
-            </settings>
-        </dataProvider>
+    <dataSource name="aht_testimonials_listing_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">AHT\Testimonials\Ui\Component\DataProvider</argument>
+            <argument name="name" xsi:type="string">aht_testimonials_listing_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="indexField" xsi:type="string">id</item>
+                    </item>
+                </item>
+            </argument>
+        </argument>
     </dataSource>
     <listingToolbar name="listing_top">
         <settings>
@@ -57,12 +50,12 @@
                     </filters>
                 </templates>
             </settings>
-            <filterSelect name="store_id" provider="${ $.parentName }">
+            <filterSelect name="id" provider="${ $.parentName }">
                 <settings>
                     <captionValue>0</captionValue>
                     <options class="Magento\Cms\Ui\Component\Listing\Column\Cms\Options"/>
                     <label translate="true">Store View</label>
-                    <dataScope>store_id</dataScope>
+                    <dataScope>id</dataScope>
                     <imports>
                         <link name="visible">componentType = column, index = ${ $.index }:visible</link>
                     </imports>
@@ -76,7 +69,7 @@
                         <message translate="true">Are you sure you want to delete selected items?</message>
                         <title translate="true">Delete items</title>
                     </confirm>
-                    <url path="cms/block/massDelete"/>
+                    <url path="testimonial/index/massDelete"/>
                     <type>delete</type>
                     <label translate="true">Delete</label>
                 </settings>
@@ -85,7 +78,7 @@
                 <settings>
                     <callback>
                         <target>editSelected</target>
-                        <provider>cms_block_listing.cms_block_listing.cms_block_columns_editor</provider>
+                        <provider>aht_testimonials_listing.aht_testimonials_listing.aht_testimonials_columns_editor</provider>
                     </callback>
                     <type>edit</type>
                     <label translate="true">Edit</label>
@@ -94,20 +87,20 @@
         </massaction>
         <paging name="listing_paging"/>
     </listingToolbar>
-    <columns name="cms_block_columns">
+    <columns name="aht_testimonial_columns">
         <settings>
             <editorConfig>
+                <param name="selectProvider" xsi:type="string">aht_testimonials_listing.aht_testimonials_listing.aht_testimonials_columns.ids</param>
+                <param name="enabled" xsi:type="boolean">true</param>
+                <param name="indexField" xsi:type="string">id</param>
                 <param name="clientConfig" xsi:type="array">
-                    <item name="saveUrl" xsi:type="url" path="cms/block/inlineEdit"/>
+                    <item name="saveUrl" path="testimonial/index/inlineEdit" xsi:type="url"/>
                     <item name="validateBeforeSave" xsi:type="boolean">false</item>
                 </param>
-                <param name="indexField" xsi:type="string">block_id</param>
-                <param name="enabled" xsi:type="boolean">true</param>
-                <param name="selectProvider" xsi:type="string">cms_block_listing.cms_block_listing.cms_block_columns.ids</param>
             </editorConfig>
             <childDefaults>
                 <param name="fieldAction" xsi:type="array">
-                    <item name="provider" xsi:type="string">cms_block_listing.cms_block_listing.cms_block_columns_editor</item>
+                    <item name="provider" xsi:type="string">aht_testimonials_listing.aht_testimonials_listing.aht_testimonials_columns_editor</item>
                     <item name="target" xsi:type="string">startEdit</item>
                     <item name="params" xsi:type="array">
                         <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
@@ -117,51 +110,65 @@
             </childDefaults>
         </settings>
         <selectionsColumn name="ids">
-            <settings>
-                <indexField>block_id</indexField>
-            </settings>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="resizeEnabled" xsi:type="boolean">false</item>
+                    <item name="resizeDefaultWidth" xsi:type="string">55</item>
+                    <item name="indexField" xsi:type="string">id</item>
+                </item>
+            </argument>
         </selectionsColumn>
-        <column name="block_id">
-            <settings>
-                <filter>textRange</filter>
-                <label translate="true">ID</label>
-                <sorting>asc</sorting>
-            </settings>
+        <column name="id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="sorting" xsi:type="string">asc</item>
+                    <item name="label" xsi:type="string" translate="true">ID</item>
+                </item>
+            </argument>
         </column>
-        <column name="title">
+        <column name="name">
             <settings>
                 <filter>text</filter>
                 <editor>
-                    <validation>
-                        <rule name="required-entry" xsi:type="boolean">true</rule>
-                    </validation>
                     <editorType>text</editorType>
                 </editor>
-                <label translate="true">Title</label>
+                <label translate="true">Name</label>
             </settings>
         </column>
-        <column name="identifier">
+        <column name="email">
             <settings>
                 <filter>text</filter>
                 <editor>
-                    <validation>
-                        <rule name="required-entry" xsi:type="boolean">true</rule>
-                    </validation>
                     <editorType>text</editorType>
                 </editor>
-                <label translate="true">Identifier</label>
+                <label translate="true">Email</label>
             </settings>
         </column>
-        <column name="store_id" class="Magento\Store\Ui\Component\Listing\Column\Store">
+
+        <column name="designation">
             <settings>
-                <label translate="true">Store View</label>
-                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
-                <sortable>false</sortable>
+                <filter>text</filter>
+                <editor>
+                    <editorType>text</editorType>
+                </editor>
+                <label translate="true">Designation</label>
             </settings>
         </column>
-        <column name="is_active" component="Magento_Ui/js/grid/columns/select">
+
+        <column name="contact">
             <settings>
-                <options class="Magento\Cms\Model\Block\Source\IsActive"/>
+                <filter>text</filter>
+                <editor>
+                    <editorType>number</editorType>
+                </editor>
+                <label translate="true">Contact</label>
+            </settings>
+        </column>
+
+        <!-- <column name="author_id" class="AHT\Testimonial\Ui\Component\Listing\Column\Author">
+            <settings>
+                <options class="AHT\Testimonial\Model\Source\AuthorSelect"/>
                 <filter>select</filter>
                 <editor>
                     <editorType>select</editorType>
@@ -169,24 +176,11 @@
                 <dataType>select</dataType>
                 <label translate="true">Status</label>
             </settings>
-        </column>
-        <column name="creation_time" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
+        </column> -->
+
+        <actionsColumn name="actions" class="AHT\Testimonials\Ui\Component\Listing\Column\PageActions">
             <settings>
-                <filter>dateRange</filter>
-                <dataType>date</dataType>
-                <label translate="true">Created</label>
-            </settings>
-        </column>
-        <column name="update_time" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
-            <settings>
-                <filter>dateRange</filter>
-                <dataType>date</dataType>
-                <label translate="true">Modified</label>
-            </settings>
-        </column>
-        <actionsColumn name="actions" class="Magento\Cms\Ui\Component\Listing\Column\BlockActions">
-            <settings>
-                <indexField>block_id</indexField>
+                <indexField>id</indexField>
             </settings>
         </actionsColumn>
     </columns>

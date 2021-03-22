@@ -67,6 +67,8 @@ class Save extends \AHT\Testimonials\Controller\Adminhtml\Testimonials implement
         /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
         $data = $this->getRequest()->getPostValue();
+        // var_dump($data);
+        // die();
         if ($data) {
             /*if (isset($data['is_active']) && $data['is_active'] === 'true') {
                 $data['is_active'] = Block::STATUS_ENABLED;
@@ -77,8 +79,9 @@ class Save extends \AHT\Testimonials\Controller\Adminhtml\Testimonials implement
 
             /** @var \Magento\Cms\Model\Block $model */
             $model = $this->blockFactory->create();
-
+            
             $id = $this->getRequest()->getParam('id');
+
             if ($id) {
                 try {
                     $model = $this->blockRepository->getById($id);

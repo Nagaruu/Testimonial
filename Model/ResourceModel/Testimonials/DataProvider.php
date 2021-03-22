@@ -5,7 +5,7 @@
  */
 namespace AHT\Testimonials\Model\ResourceModel\Testimonials;
 
-use Magento\Cms\Model\ResourceModel\Block\CollectionFactory;
+use AHT\Testimonials\Model\ResourceModel\Testimonials\CollectionFactory;
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Ui\DataProvider\Modifier\PoolInterface;
 
@@ -66,11 +66,15 @@ class DataProvider extends \Magento\Ui\DataProvider\ModifierPoolDataProvider
         if (isset($this->_loadedData)) {
             return $this->_loadedData;
         }
+        // Get all record from collection
         $items = $this->collection->getItems();
-        foreach ($items as $item) {
-            $this->_loadedData[$item->getId()] = $item->getData();
+
+        foreach ($items as $testimonials) {
+            
+            $this->_loadedData[$testimonials->getId()] = $testimonials->getData();
+
+            $this->dataPersistor->clear('testimonials');
         }
         return $this->_loadedData;
     }
 }
- 

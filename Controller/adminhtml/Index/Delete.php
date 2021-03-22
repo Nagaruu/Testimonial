@@ -8,7 +8,7 @@ namespace AHT\Testimonials\Controller\Adminhtml\Index;
 
 use Magento\Framework\App\Action\HttpPostActionInterface;
 
-class Delete extends \Magento\Cms\Controller\Adminhtml\Block implements HttpPostActionInterface
+class Delete extends \AHT\Testimonials\Controller\Adminhtml\Testimonials implements HttpPostActionInterface
 {
     /**
      * Delete action
@@ -24,7 +24,7 @@ class Delete extends \Magento\Cms\Controller\Adminhtml\Block implements HttpPost
         if ($id) {
             try {
                 // init model and delete
-                $model = $this->_objectManager->create(\Magento\Cms\Model\Block::class);
+                $model = $this->_objectManager->create(\AHT\Testimonials\Model\Testimonials::class);
                 $model->load($id);
                 $model->delete();
                 // display success message
