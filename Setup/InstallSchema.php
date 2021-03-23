@@ -74,6 +74,51 @@ class InstallSchema implements InstallSchemaInterface {
 				\Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_FULLTEXT
 			);
 		}
+
+		if (!$installer->tableExists('aht_customer')) {
+			$table = $installer->getConnection()->newTable(
+				$installer->getTable('aht_customer')
+			)
+				->addColumn(
+				'id',
+				\Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+				null,
+				[
+					'identity' => true,
+					'nullable' => false,
+					'primary'  => true,
+					'unsigned' => true,
+				],
+				'ID'
+			)
+				->addColumn(
+				'name',
+				\Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+				255,
+				['nullable => false'],
+				'Name'
+			)
+                ->addColumn(
+				'email',
+				\Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+				255,
+				['nullable => false'],
+				'Email'
+			)
+				->setComment('Customer Table');
+			$installer->getConnection()->createTable($table);
+
+			$installer->getConnection()->addIndex(
+				$installer->getTable('aht_customer'),
+				$setup->getIdxName(
+					$installer->getTable('aht_customer'),
+					['name'],
+					\Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_FULLTEXT
+				),
+				['name'],
+				\Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_FULLTEXT
+			);
+		}
 		$installer->endSetup();
 	}
 }

@@ -86,20 +86,6 @@
                     <label translate="true">Delete</label>
                 </settings>
             </action>
-            <action name="disable">
-                <settings>
-                    <url path="cms/page/massDisable"/>
-                    <type>disable</type>
-                    <label translate="true">Disable</label>
-                </settings>
-            </action>
-            <action name="enable">
-                <settings>
-                    <url path="cms/page/massEnable"/>
-                    <type>enable</type>
-                    <label translate="true">Enable</label>
-                </settings>
-            </action>
             <action name="edit">
                 <settings>
                     <callback>

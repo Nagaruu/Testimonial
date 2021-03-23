@@ -3,7 +3,7 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
-namespace AHT\Testimonials\Controller\Adminhtml\Index;
+namespace AHT\Testimonials\Controller\Adminhtml\Customer;
 
 use Magento\Backend\App\Action\Context;
 use AHT\Testimonials\Api\TestimonialsRepositoryInterface as BlockRepository;
@@ -18,7 +18,7 @@ class InlineEdit extends \Magento\Backend\App\Action
      *
      * @see _isAllowed()
      */
-    const ADMIN_RESOURCE = 'AHT_Testimonials::testimonials';
+    const ADMIN_RESOURCE = 'AHT_Testimonials::customer';
 
     /**
      * @var \AHT\Testimonials\Api\TestimonialsRepositoryInterface

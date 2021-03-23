@@ -3,7 +3,7 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
-namespace AHT\Testimonials\Controller\Adminhtml\Index;
+namespace AHT\Testimonials\Controller\Adminhtml\Customer;
 
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Backend\App\Action\Context;

@@ -4,7 +4,7 @@
 		
         <add id="AHT_Testimonials::testimonials" title="Testimonial" translate="Testimonials" module="AHT_Testimonials" sortOrder="50"   resource="AHT_Testimonials::testimonials"/>
 	
-    	<add id="AHT_Testimonials::index" title="Testimonials" module="AHT_Testimonials" parent="AHT_Testimonials::testimonials" action="testimonials/index/index" resource="AHT_Testimonials::index" sortOrder="55" />
-		<!-- <add id="AHT_Testimonials::category" title="Category" module="AHT_Testimonials" parent="AHT_Testimonials::testimonials" action="testimonials/category/" resource="AHT_Testimonials::category" sortOrder="55" /> -->
+    	<add id="AHT_Testimonials::index" title="Testimonials" module="AHT_Testimonials" parent="AHT_Testimonials::testimonials" action="testimonials/index/index" resource="AHT_Testimonials::menu" sortOrder="55" />
+		<add id="AHT_Testimonials::customer" title="Customer" module="AHT_Testimonials" parent="AHT_Testimonials::testimonials" action="testimonials/customer" resource="AHT_Testimonials::customer" sortOrder="55" />
 	</menu>
 </config>

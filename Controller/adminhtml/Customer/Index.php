@@ -1,6 +1,6 @@
 <?php 
 
-namespace AHT\Testimonials\Controller\Adminhtml\Index;
+namespace AHT\Testimonials\Controller\Adminhtml\Customer;
 
 class Index extends \Magento\Backend\App\Action {
 
@@ -18,7 +18,7 @@ class Index extends \Magento\Backend\App\Action {
     public function execute()
     {
        $tempPage = $this->pageFactory->create();
-       $tempPage->getConfig()->getTitle()->prepend(__('Testimonials'));
+       $tempPage->getConfig()->getTitle()->prepend(__('Customer'));
        return $tempPage;
     }
 }
