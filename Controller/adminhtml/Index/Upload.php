@@ -10,7 +10,7 @@ class Upload extends \Magento\Backend\App\Action
     /**
      * Image Uploader
      *
-     * @var \AHT\Testimonials\Model\ResourceModel\Testimonials\ImageUploader
+     * @var \AHT\Testimonials\Model\ResourceModel\ImageUploader
      */
     protected $imageUploader;
 
@@ -18,7 +18,7 @@ class Upload extends \Magento\Backend\App\Action
      * Upload constructor.
      *
      * @param \Magento\Backend\App\Action\Context $context
-     * @param \AHT\Testimonials\Model\ResourceModel\Testimonials\ImageUploader $imageUploader
+     * @param \AHT\Testimonials\Model\ResourceModel\ImageUploader $imageUploader
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,

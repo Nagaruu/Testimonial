@@ -1,0 +1,54 @@
+<h3>Testimonial Create Form</h3>
+<div class="testimonial-create-form">
+    <form class="testimonial-blog-create" method="post" enctype="multipart/form-data" action="<?= $block->getUrl('testimonial/blog/save')?>">
+        <div class="testimonial-blog-create-right">
+            <img src="" alt="" class="image-upload" />
+        </div>
+
+        <div class="testimonial-blog-create-left">
+            <label for="blog_name">First Name</label>
+            <input type="text" name="blog_name" placeholder="Your name..">
+
+            <label for="blog_email">Email</label>
+            <input type="text" name="blog_email" placeholder="Your email..">
+
+            <label for="blog_designation">Designation</label>
+            <input type="text" name="blog_designation" placeholder="Your designation..">
+
+            <label for="blog_contact">Designation</label>
+            <input type="number" name="blog_contact" placeholder="Your contact..">
+
+            <label for="blog_message">Designation</label>
+            <textarea name="blog_message" rows="10" cols="30" placeholder="This is your message.."></textarea>
+
+            <input type="submit" name="createBtn" class="createBtn" value="Submit">
+        </div>
+    </form>
+</div>
+<script>
+    require(['jquery', 'jquery/ui'], function($){
+
+        // Upload Image
+        $('.testimonial-blog-create-right').click(() => {
+            const inputFile = document.createElement('input');
+            inputFile.setAttribute('type', 'file');
+            inputFile.setAttribute('name', 'blog_image');
+            inputFile.setAttribute('class', 'd-none');
+            inputFile.click();
+            $('.testimonial-blog-create-right').append(inputFile);
+            inputFile.addEventListener('change', (e) => {
+                if(inputFile.files.length > 0) {
+                    const file = inputFile.files[0];
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('.image-upload').attr('src', e.target.result);
+                        // $('.avatar-icon-plus').addClass('d-none');
+                        // $('input[type="file"]').addClass('d-none');
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+    });
+</script>
+

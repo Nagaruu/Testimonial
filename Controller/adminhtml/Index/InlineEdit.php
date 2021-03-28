@@ -65,6 +65,9 @@ class InlineEdit extends \Magento\Backend\App\Action
                 foreach (array_keys($postItems) as $blockId) {
                     /** @var \Magento\Cms\Model\Block $block */
                     $block = $this->blockRepository->getById($blockId);
+                    // echo "</pre>";
+                    // var_dump($block);
+                    // die();
                     try {
                         $block->setData(array_merge($block->getData(), $postItems[$blockId]));
                         $this->blockRepository->save($block);

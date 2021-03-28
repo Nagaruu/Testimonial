@@ -7,8 +7,8 @@
         <arguments>
             <argument name="mainTable" xsi:type="string">aht_testimonials</argument>
             <argument name="resourceModel" xsi:type="string">AHT\Testimonials\Model\ResourceModel\Testimonials</argument>
-            <argument name="eventPrefix" xsi:type="string">AHT_Testimonials_grid_collection</argument>
-            <argument name="eventObject" xsi:type="string">field_grid_collection</argument>
+            <argument name="eventPrefix" xsi:type="string">aht_testimonials</argument>
+            <argument name="eventObject" xsi:type="string">testimonials_collection</argument>
         </arguments>
     </virtualType>
 
@@ -16,8 +16,8 @@
         <arguments>
             <argument name="mainTable" xsi:type="string">aht_customer</argument>
             <argument name="resourceModel" xsi:type="string">AHT\Testimonials\Model\ResourceModel\Customer</argument>
-            <argument name="eventPrefix" xsi:type="string">AHT_Testimonials_grid_collection</argument>
-            <argument name="eventObject" xsi:type="string">field_grid_collection</argument>
+            <argument name="eventPrefix" xsi:type="string">aht_customer</argument>
+            <argument name="eventObject" xsi:type="string">customer_collection</argument>
         </arguments>
     </virtualType>
 
@@ -46,5 +46,6 @@
     </virtualType>
 
     <preference for='AHT\Testimonials\Api\TestimonialsRepositoryInterface' type='AHT\Testimonials\Model\TestimonialsRepository' />
+    <preference for='AHT\Testimonials\Api\CustomerRepositoryInterface' type='AHT\Testimonials\Model\CustomerRepository' />
 
 </config>

@@ -1,9 +1,9 @@
 <?php
 namespace AHT\Testimonials\Model;
 
-use AHT\Testimonials\Api\Data\TestimonialsInterface;
+use AHT\Testimonials\Api\Data\CustomerInterface;
 
-class Testimonials extends \Magento\Framework\Model\AbstractModel implements TestimonialsInterface  {
+class Customer extends \Magento\Framework\Model\AbstractModel implements CustomerInterface  {
     public function __construct(
    	 \Magento\Framework\Model\Context $context,
    	 \Magento\Framework\Registry $registry,

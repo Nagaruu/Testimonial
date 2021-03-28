@@ -2,19 +2,19 @@
 namespace AHT\Testimonials\Model;
 
 use AHT\Testimonials\Api\Data;
-use AHT\Testimonials\Api\TestimonialsRepositoryInterface;
+use AHT\Testimonials\Api\CustomerRepositoryInterface;
 use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use AHT\Testimonials\Model\ResourceModel\Customer as ResourceTestimonials;
-use AHT\Testimonials\Model\ResourceModel\Customer\CollectionFactory as TestimonialsCollectionFactory;
+use AHT\Testimonials\Model\ResourceModel\Customer\CollectionFactory as CustomerCollectionFactory;
 
 /**
  * Class TestimonialsRepository
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
-class TestimonialsRepository implements TestimonialsRepositoryInterface
+class CustomerRepository implements CustomerRepositoryInterface
 {
     /**
      * @var ResourceTestimonials
@@ -46,7 +46,7 @@ class TestimonialsRepository implements TestimonialsRepositoryInterface
 
     public function __construct(
         ResourceTestimonials $resource,
-        TestimonialsFactory $TestimonialsFactory,
+        CustomerFactory $TestimonialsFactory,
         // Data\TestimonialsInterfaceFactory $dataTestimonialsFactory,
         CustomerCollectionFactory $customerCollectionFactory
     ) {
@@ -64,14 +64,14 @@ class TestimonialsRepository implements TestimonialsRepositoryInterface
      * @return Testimonials
      * @throws CouldNotSaveException
      */
-    public function save(\AHT\Testimonials\Api\Data\TestimonialsInterface $testimonials)
+    public function save(\AHT\Testimonials\Api\Data\CustomerInterface $testimonials)
     {
 
         try {
             $this->resource->save($testimonials);
         } catch (\Exception $exception) {
             throw new CouldNotSaveException(
-                __('Could not save the Testimonials: %1', $exception->getMessage()),
+                __('Could not save the Customer: %1', $exception->getMessage()),
                 $exception
             );
         }
@@ -90,7 +90,7 @@ class TestimonialsRepository implements TestimonialsRepositoryInterface
         $testimonials = $this->TestimonialsFactory->create();
         $testimonials->load($testimonialsId);
         if (!$testimonials->getId()) {
-            throw new NoSuchEntityException(__('The CMS Testimonials with the "%1" ID doesn\'t exist.', $testimonialsId));
+            throw new NoSuchEntityException(__('The CMS Customer with the "%1" ID doesn\'t exist.', $testimonialsId));
         }
         return $testimonials;
     }
@@ -117,13 +117,13 @@ class TestimonialsRepository implements TestimonialsRepositoryInterface
      * @return bool
      * @throws CouldNotDeleteException
      */
-    public function delete(\AHT\Testimonials\Api\Data\TestimonialsInterface $testimonials)
+    public function delete(\AHT\Testimonials\Api\Data\CustomerInterface $testimonials)
     {
         try {
             $this->resource->delete($testimonials);
         } catch (\Exception $exception) {
             throw new CouldNotDeleteException(__(
-                'Could not delete the Testimonials: %1',
+                'Could not delete the Customer: %1',
                 $exception->getMessage()
             ));
         }

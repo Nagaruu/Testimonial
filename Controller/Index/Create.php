@@ -1,11 +1,8 @@
 <?php
 
-
 namespace AHT\Testimonialư\Controller\Index;
 
-use Magento\Framework\App\Action\Action;
-
-class Index extends Action
+class Create extends \Magento\Framework\App\Action\Action
 {
     protected $_pageFactory;
 

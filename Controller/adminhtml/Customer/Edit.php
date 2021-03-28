@@ -10,13 +10,13 @@ use Magento\Framework\App\Action\HttpGetActionInterface;
 /**
  * Edit CMS block action.
  */
-class Edit extends \Magento\Cms\Controller\Adminhtml\Block implements HttpGetActionInterface
+class Edit extends \AHT\Testimonials\Controller\Adminhtml\Testimonials implements HttpGetActionInterface
 {
     /**
      * @var \Magento\Framework\View\Result\PageFactory
      */
     protected $resultPageFactory;
-    protected $testimonialsFactory;
+    protected $customerFactory;
 
     /**
      * @param \Magento\Backend\App\Action\Context $context
@@ -27,10 +27,10 @@ class Edit extends \Magento\Cms\Controller\Adminhtml\Block implements HttpGetAct
         \Magento\Backend\App\Action\Context $context,
         \Magento\Framework\Registry $coreRegistry,
         \Magento\Framework\View\Result\PageFactory $resultPageFactory,
-        \AHT\Testimonials\Model\TestimonialsFactory $testimonialsFactory
+        \AHT\Testimonials\Model\CustomerFactory $customerFactory
     ) {
         $this->resultPageFactory = $resultPageFactory;
-        $this->testimonialsFactory = $testimonialsFactory;
+        $this->customerFactory = $customerFactory;
         parent::__construct($context, $coreRegistry);
     }
 
@@ -44,7 +44,7 @@ class Edit extends \Magento\Cms\Controller\Adminhtml\Block implements HttpGetAct
     {
         // 1. Get ID and create model
         $id = $this->getRequest()->getParam('id');
-        $model = $this->testimonialsFactory->create();
+        $model = $this->customerFactory->create();
 
         // 2. Initial checking
         if ($id) {
@@ -59,17 +59,17 @@ class Edit extends \Magento\Cms\Controller\Adminhtml\Block implements HttpGetAct
             }
         }
 
-        $this->_coreRegistry->register('testimonials', $model);
+        $this->_coreRegistry->register('customer', $model);
 
         // 5. Build edit form
         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
         $resultPage = $this->resultPageFactory->create();
         $this->initPage($resultPage)->addBreadcrumb(
-            $id ? __('Edit testimonials') : __('New testimonials'),
-            $id ? __('Edit testimonials') : __('New testimonials')
+            $id ? __('Edit customer') : __('New customer'),
+            $id ? __('Edit customer') : __('New customer')
         );
-        $resultPage->getConfig()->getTitle()->prepend(__('testimonials'));
-        $resultPage->getConfig()->getTitle()->prepend($model->getId() ? $model->getTitle() : __('New testimonials'));
+        $resultPage->getConfig()->getTitle()->prepend(__('customer'));
+        $resultPage->getConfig()->getTitle()->prepend($model->getId() ? $model->getTitle() : __('New customer'));
 
         return $resultPage;
     }

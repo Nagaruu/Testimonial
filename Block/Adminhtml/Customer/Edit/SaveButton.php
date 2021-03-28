@@ -27,7 +27,7 @@ class SaveButton extends GenericButton implements ButtonProviderInterface
                     'buttonAdapter' => [
                         'actions' => [
                             [
-                                'targetName' => 'aht_testimonials_form.aht_testimonials_form',
+                                'targetName' => 'aht_customer_form.aht_customer_form',
                                 'actionName' => 'save',
                                 'params' => [
                                     false
@@ -59,7 +59,7 @@ class SaveButton extends GenericButton implements ButtonProviderInterface
                         'buttonAdapter' => [
                             'actions' => [
                                 [
-                                    'targetName' => 'aht_testimonials_form.aht_testimonials_form',
+                                    'targetName' => 'aht_customer_form.aht_customer_form',
                                     'actionName' => 'save',
                                     'params' => [
                                         true,
@@ -81,7 +81,7 @@ class SaveButton extends GenericButton implements ButtonProviderInterface
                         'buttonAdapter' => [
                             'actions' => [
                                 [
-                                    'targetName' => 'aht_testimonials_form.aht_testimonials_form',
+                                    'targetName' => 'aht_customer_form.aht_customer_form',
                                     'actionName' => 'save',
                                     'params' => [
                                         true

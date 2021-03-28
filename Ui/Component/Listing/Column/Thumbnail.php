@@ -1,52 +1,42 @@
 <?php
-
 namespace AHT\Testimonials\Ui\Component\Listing\Column;
 
 use Magento\Framework\View\Element\UiComponentFactory;
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
+use Magento\Framework\App\Filesystem\DirectoryList;
 
-
-class Image extends \Magento\Ui\Component\Listing\Columns\Column
+class Thumbnail extends \Magento\Ui\Component\Listing\Columns\Column
 {
+    const NAME = 'Thumbnail';
 
+    const ALT_FIELD = 'path';
 
-    /**
-     * @var \PHPCuong\portfolioSlider\Model\portfolio
-     */
-    protected $testimonials;
     protected $_storeManager;
-    /**
-     * @param ContextInterface $context
-     * @param UiComponentFactory $uiComponentFactory
-     * @param \Magento\Framework\UrlInterface $urlBuilder
-     * @param \PHPCuong\portfolioSlider\Model\portfolio $portfolio
-     * @param array $components
-     * @param array $data
-     */
+    protected $_fileSystem;
+
     public function __construct(
         ContextInterface $context,
-        UiComponentFactory $uiComponentFactory,
+        UiComponentFactory $uiComponentFactory,        
         \Magento\Framework\UrlInterface $urlBuilder,
-        \AHT\Testimonials\Model\Testimonials $testimonials,
-        \Magento\Store\Model\StoreManagerInterface $storeManager,
         array $components = [],
-        array $data = []
-    ) {
+        array $data = [],
+        \Magento\Store\Model\StoreManagerInterface $storeManager,
+        \Magento\Framework\Filesystem $filesystem
+    ) {        
         parent::__construct($context, $uiComponentFactory, $components, $data);
-        $this->urlBuilder = $urlBuilder;
-        $this->testimonials = $testimonials;
         $this->_storeManager = $storeManager;
+        $this->_fileSystem = $filesystem;
+        $this->urlBuilder = $urlBuilder;
     }
 
     /**
-     * Prepare Data Source
-     *
-     * @param array $dataSource
-     * @return array
-     */
+    * Prepare Data Source
+    *
+    * @param array $dataSource
+    * @return array
+    */
     public function prepareDataSource(array $dataSource)
     {
-
         if (isset($dataSource['data']['items'])) {
             $fieldName = $this->getData('name');
             foreach ($dataSource['data']['items'] as & $item) {
@@ -59,7 +49,17 @@ class Image extends \Magento\Ui\Component\Listing\Columns\Column
                 $item[$fieldName . '_alt'] = $testimonials['name'];
             }
         }
-
         return $dataSource;
+    }
+
+    /**
+    * @param array $row
+    *
+    * @return null|string
+    */
+    protected function getAlt($row)
+    {
+        $altField = self::ALT_FIELD;
+        return isset($row[$altField]) ? $row[$altField] : null;
     }
 }

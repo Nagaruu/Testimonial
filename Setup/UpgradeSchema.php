@@ -33,8 +33,8 @@ class UpgradeSchema implements UpgradeSchemaInterface
         }
         if (version_compare($context->getVersion(), '1.0.2', '<')) {
             $installer->getConnection()->addColumn(
-                  $installer->getTable('aht_customer'),
-                  'image',
+                  $installer->getTable('aht_testimonials'),
+                  'images',
                   [
                       'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                       'length' => 255,

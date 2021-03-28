@@ -81,8 +81,8 @@ class TestimonialsRepository implements TestimonialsRepositoryInterface
     /**
      * Load Testimonials data by given Testimonials Identity
      *
-     * @param string $TestimonialsId
-     * @return Testimonials
+     * @param string $testimonialsId
+     * @return testimonials
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
     public function getById($testimonialsId)

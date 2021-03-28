@@ -1,12 +1,12 @@
 <?php
 
-namespace AHT\Testimonials\Model\ResourceModel\Testimonials;
+namespace AHT\Testimonials\Model\ResourceModel\Customer;
 
 class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection
 {
     protected $_idFieldName = 'id';
     protected $_eventPrefix = 'aht_customer';
-    protected $_eventObject = 'testimonials_collection';
+    protected $_eventObject = 'customer_collection';
 
     /**
      * Define resource model

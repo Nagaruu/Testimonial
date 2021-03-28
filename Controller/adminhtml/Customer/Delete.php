@@ -10,6 +10,25 @@ use Magento\Framework\App\Action\HttpPostActionInterface;
 
 class Delete extends \AHT\Testimonials\Controller\Adminhtml\Testimonials implements HttpPostActionInterface
 {
+
+    protected $customerFactory;
+
+    protected $customerResourceFactory;
+
+    public function __construct(
+        \Magento\Backend\App\Action\Context $context,
+        \Magento\Framework\Registry $coreRegistry,
+        \Magento\Framework\View\Result\PageFactory $resultPageFactory,
+        \AHT\Testimonials\Model\ResourceModel\CustomerFactory $customerResourceFactory,
+        \AHT\Testimonials\Model\CustomerFactory $customerFactory
+
+    ) {
+        $this->resultPageFactory = $resultPageFactory;
+        $this->customerFactory = $customerFactory;
+        $this->customerResourceFactory = $customerResourceFactory;
+        parent::__construct($context, $coreRegistry);
+    }
+
     /**
      * Delete action
      *
@@ -24,9 +43,11 @@ class Delete extends \AHT\Testimonials\Controller\Adminhtml\Testimonials impleme
         if ($id) {
             try {
                 // init model and delete
-                $model = $this->_objectManager->create(\AHT\Testimonials\Model\Testimonials::class);
-                $model->load($id);
-                $model->delete();
+                $model = $this->customerFactory->create();
+                $modelResource = $this->customerResourceFactory->create();
+                $modelResource->load($model,$id);
+              //  $model->load($model,$id);
+                $modelResource->delete($model);
                 // display success message
                 $this->messageManager->addSuccessMessage(__('You deleted the block.'));
                 // go to grid

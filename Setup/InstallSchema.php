@@ -53,6 +53,13 @@ class InstallSchema implements InstallSchemaInterface {
 				['nullable => false'],
 				'Message'
 			)
+				->addColumn(
+                'customerid',
+                \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+                255,
+                ['nullable' => false],
+                    'customerid'
+            )
                 ->addColumn(
 				'contact',
 				\Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
@@ -92,14 +99,14 @@ class InstallSchema implements InstallSchemaInterface {
 				'ID'
 			)
 				->addColumn(
-				'name',
+				'customer_name',
 				\Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
 				255,
 				['nullable => false'],
 				'Name'
 			)
                 ->addColumn(
-				'email',
+				'customer_email',
 				\Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
 				255,
 				['nullable => false'],
@@ -112,10 +119,10 @@ class InstallSchema implements InstallSchemaInterface {
 				$installer->getTable('aht_customer'),
 				$setup->getIdxName(
 					$installer->getTable('aht_customer'),
-					['name'],
+					['customer_name'],
 					\Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_FULLTEXT
 				),
-				['name'],
+				['customer_name'],
 				\Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_FULLTEXT
 			);
 		}

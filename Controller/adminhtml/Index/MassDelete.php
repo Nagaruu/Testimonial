@@ -15,7 +15,7 @@ use Magento\Cms\Model\ResourceModel\Block\CollectionFactory;
 /**
  * Class MassDelete
  */
-class MassDelete extends \Magento\Backend\App\Action implements HttpPostActionInterface
+class MassDelete extends \AHT\Testimonials\Controller\Adminhtml\Testimonials implements HttpPostActionInterface
 {
     /**
      * Authorization level of a basic admin session

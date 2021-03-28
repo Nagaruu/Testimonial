@@ -152,10 +152,13 @@
                 <dataScope>message</dataScope>
             </settings>
         </field>
-        <field name="image" sortOrder="25" formElement="imageUploader" >
+        <field name="image" sortOrder="2" formElement="imageUploader" >
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">index</item>
+                     <!-- <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item> -->
                 </item>
             </argument>
             <settings>
@@ -170,14 +173,30 @@
                     <settings>
                         <required>false</required>
                         <uploaderConfig>
-                            <param xsi:type="url" name="url" path="testimonials/index"/>
+                            <param xsi:type="url" name="url" path="testimonials/index/upload"/>
                         </uploaderConfig>
+                        <previewTmpl>Magento_Catalog/image-preview</previewTmpl>
                         <openDialogTitle>Media Gallery</openDialogTitle>
                         <initialMediaGalleryOpenSubpath>testimonials/index</initialMediaGalleryOpenSubpath>
                         <allowedExtensions>jpg jpeg gif png</allowedExtensions>
                         <maxFileSize>4194304</maxFileSize>
                     </settings>
                 </imageUploader>
+            </formElements>
+        </field>
+        <field name="customer_name" sortOrder="26" formElement="select">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Customer</label>
+                <dataScope>customerid</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="AHT\Testimonials\Ui\Component\Listing\Column\ListOptionForm" />
+                        <caption translate="true">-- Please Select --</caption>
+                    </settings>
+                </select>
             </formElements>
         </field>
     </fieldset>

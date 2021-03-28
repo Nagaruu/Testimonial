@@ -3,9 +3,9 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
-namespace AHT\Testimonials\Model\ResourceModel\Testimonials;
+namespace AHT\Testimonials\Model\ResourceModel\Customer;
 
-use AHT\Testimonials\Model\ResourceModel\Testimonials\CollectionFactory;
+use AHT\Testimonials\Model\ResourceModel\Customer\CollectionFactory;
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Ui\DataProvider\Modifier\PoolInterface;
 

@@ -145,7 +145,13 @@ class Collection extends PageCollection implements SearchResultInterface
     protected function _initSelect()
     {
         $this->getSelect()
-            ->from(['main_table' => 'aht_testimonials']);
+            ->from(['main_table' => 'aht_testimonials'])
+
+            ->joinLeft('aht_customer',
+            'main_table.customerid = aht_customer.id',
+            [
+                'aht_customer.customer_name'
+            ]);
         
         $this->addFilterToMap('id', 'main_table.id');
         return $this;

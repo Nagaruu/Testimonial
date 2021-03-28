@@ -10,9 +10,9 @@ use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Registry;
-use AHT\Testimonials\Api\TestimonialsRepositoryInterface;
-use AHT\Testimonials\Model\Testimonials;
-use AHT\Testimonials\Model\TestimonialsFactory;
+use AHT\Testimonials\Api\CustomerRepositoryInterface;
+use AHT\Testimonials\Model\Customer;
+use AHT\Testimonials\Model\CustomerFactory;
 
 /**
  * Save CMS block action.
@@ -45,15 +45,15 @@ class Save extends \AHT\Testimonials\Controller\Adminhtml\Testimonials implement
         Context $context,
         Registry $coreRegistry,
         DataPersistorInterface $dataPersistor,
-        TestimonialsFactory $blockFactory = null,
-        TestimonialsRepositoryInterface $blockRepository = null
+        CustomerFactory $blockFactory = null,
+        CustomerRepositoryInterface $blockRepository = null
     ) {
         $this->dataPersistor = $dataPersistor;
         $this->blockFactory = $blockFactory
-            ?: \Magento\Framework\App\ObjectManager::getInstance()->get(TestimonialsFactory::class);
+            ?: \Magento\Framework\App\ObjectManager::getInstance()->get(CustomerFactory::class);
         $this->blockRepository = $blockRepository
-            ?: \Magento\Framework\App\ObjectManager::getInstance()->get(TestimonialsRepositoryInterface::class);
-        parent::__construct($context, $coreRegistry);
+            ?: \Magento\Framework\App\ObjectManager::getInstance()->get(CustomerRepositoryInterface::class);
+        parent::__construct($context, $coreRegistry);  
     }
 
     /**
@@ -67,27 +67,19 @@ class Save extends \AHT\Testimonials\Controller\Adminhtml\Testimonials implement
         /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
         $data = $this->getRequest()->getPostValue();
-        // var_dump($data);
-        // die();
         if ($data) {
             /*if (isset($data['is_active']) && $data['is_active'] === 'true') {
                 $data['is_active'] = Block::STATUS_ENABLED;
             }*/
+
             if (empty($data['id'])) {
                 $data['id'] = null;
-            }
-            if (isset($data['image'])) {
-                $imageName = $data['image'];
-            }
-            if (isset($data['image'][0]['name'])) {
-                $imageName = $data['image'][0]['name'];
             }
 
             /** @var \Magento\Cms\Model\Block $model */
             $model = $this->blockFactory->create();
-            
-            $id = $this->getRequest()->getParam('id');
 
+            $id = $this->getRequest()->getParam('id');
             if ($id) {
                 try {
                     $model = $this->blockRepository->getById($id);
@@ -96,13 +88,15 @@ class Save extends \AHT\Testimonials\Controller\Adminhtml\Testimonials implement
                     return $resultRedirect->setPath('*/*/');
                 }
             }
-
+            
+            //Get name of images in database
             $model->setData($data);
 
             try {
                 $this->blockRepository->save($model);
+                /*$model->save();*/
                 $this->messageManager->addSuccessMessage(__('You saved the block.'));
-                $this->dataPersistor->clear('testimonials');
+                $this->dataPersistor->clear('fortfolio');
                 return $this->processBlockReturn($model, $data, $resultRedirect);
             } catch (LocalizedException $e) {
                 $this->messageManager->addErrorMessage($e->getMessage());
@@ -110,7 +104,7 @@ class Save extends \AHT\Testimonials\Controller\Adminhtml\Testimonials implement
                 $this->messageManager->addExceptionMessage($e, __('Something went wrong while saving the block.'));
             }
 
-            $this->dataPersistor->set('testimonials', $data);
+            $this->dataPersistor->set('fortfolio', $data);
             return $resultRedirect->setPath('*/*/edit', ['id' => $id]);
         }
         return $resultRedirect->setPath('*/*/');
@@ -140,7 +134,7 @@ class Save extends \AHT\Testimonials\Controller\Adminhtml\Testimonials implement
             $this->blockRepository->save($duplicateModel);
             $id = $duplicateModel->getId();
             $this->messageManager->addSuccessMessage(__('You duplicated the block.'));
-            $this->dataPersistor->set('testimonials', $data);
+            $this->dataPersistor->set('Testimonials', $data);
             $resultRedirect->setPath('*/*/edit', ['id' => $id]);
         }
         return $resultRedirect;

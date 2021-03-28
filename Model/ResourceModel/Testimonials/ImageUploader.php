@@ -1,9 +1,9 @@
 <?php
 
-
 namespace AHT\Testimonials\Model\ResourceModel\Testimonials;
 
 use AHT\Testimonials\Model\ResourceModel\Testimonials\FileInfo;
+
 
 class ImageUploader
 {
@@ -208,10 +208,10 @@ class ImageUploader
                     $baseTmpImagePath,
                     $baseImagePath
                 );
-                $this->mediaDirectory->renameFile(
-                    $baseTmpImagePath,
-                    $baseImagePath
-                );
+                // $this->mediaDirectory->renameFile(
+                //     $baseTmpImagePath,
+                //     $baseImagePath
+                // );
             }
         } catch (\Exception $e) {
             throw new \Magento\Framework\Exception\LocalizedException(

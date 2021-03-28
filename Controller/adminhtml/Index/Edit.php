@@ -10,7 +10,7 @@ use Magento\Framework\App\Action\HttpGetActionInterface;
 /**
  * Edit CMS block action.
  */
-class Edit extends \Magento\Cms\Controller\Adminhtml\Block implements HttpGetActionInterface
+class Edit extends \AHT\Testimonials\Controller\Adminhtml\Testimonials implements HttpGetActionInterface
 {
     /**
      * @var \Magento\Framework\View\Result\PageFactory
