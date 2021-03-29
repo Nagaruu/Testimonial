@@ -1,44 +1,52 @@
 <?php
+
 namespace AHT\Testimonials\Block\Frontend;
 
-use Magento\Framework\View\Element\Template;
-use Magento\Widget\Block\BlockInterface;
-use AHT\Testimonials\Model\ResourceModel\Testimonials\Grid\CollectionFactory;
 
-class Index extends Template implements BlockInterface
+use Magento\Framework\View\Element\Template;
+
+class Index extends \Magento\Framework\View\Element\Template
 {
-    protected $_collection;
-    public $_storeManager;
-    public $_customerSession;
+    protected $_blog;
 
     public function __construct(
-        CollectionFactory $testimonialsCollectionFactory,
-        \Magento\Framework\View\Element\Template\Context $context,
-        \Magento\Customer\Model\Session $customerSession,  
+        Template\Context $context,
+        \AHT\Testimonials\Model\ResourceModel\Testimonials\CollectionFactory $blogFactory,
         array $data = []
-
     )
     {
+        $this->_blog = $blogFactory;
         parent::__construct($context, $data);
-        $this->_customerSession = $customerSession;
-        $this->_collection =  $testimonialsCollectionFactory->create();
     }
 
-    public function getDataBlocks()
-    {
-
-        $portfolio = $this->_collection;
-        $items = $portfolio->getItems();
-        foreach($items as $item)
-        { 
-            $itemData = $item->getData();
-            $this->_loadedData[$item->getId()] = $itemData;
-        }
-
-        return $this->_loadedData;
+    /**
+     * Preparing global layout
+     *
+     * @return $this
+     */
+    protected function _prepareLayout() {
+        parent::_prepareLayout();
+        $this->pageConfig->getTitle()->set(__('Blog Collection'));
+        return $this;
     }
 
-    public function getStoreManager(){
-        return $this->_storeManager;
+    public function getAll() {
+        $collecion = $this->_blog->create();
+        return $collecion;
+    }
+
+    public function getById($id) {
+        $id = $this->getRequest()->getParams();
+        $collection = $this->_blog->create();
+        $collection->addFieldToFilter('id', $id);
+        return $collection;
+    }
+
+    public function getCreate() {
+            return $this->getUrl('testimonials/index/create');
+    }
+
+    public function getEdit() {
+        return $this->getUrl('testimonials/index/edit');
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace AHT\Testimonialư\Controller\Index;
+namespace AHT\Testimonials\Controller\Index;
 
 use Magento\Framework\App\Action\Action;
 

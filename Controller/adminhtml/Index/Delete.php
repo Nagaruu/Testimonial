@@ -9,7 +9,18 @@ namespace AHT\Testimonials\Controller\Adminhtml\Index;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 
 class Delete extends \AHT\Testimonials\Controller\Adminhtml\Testimonials implements HttpPostActionInterface
+
 {
+    protected $testimonialsFactory;
+
+    public function __construct(
+        \Magento\Backend\App\Action\Context $context,
+        \Magento\Framework\Registry $coreRegistry,
+        \AHT\Testimonials\Model\TestimonialsFactory $testimonialsFactory
+    ) {
+        $this->testimonialsFactory = $testimonialsFactory;
+        parent::__construct($context, $coreRegistry);
+    }
     /**
      * Delete action
      *
@@ -24,7 +35,7 @@ class Delete extends \AHT\Testimonials\Controller\Adminhtml\Testimonials impleme
         if ($id) {
             try {
                 // init model and delete
-                $model = $this->_objectManager->create(\AHT\Testimonials\Model\Testimonials::class);
+                $model = $this->testimonialsFactory->create();
                 $model->load($id);
                 $model->delete();
                 // display success message

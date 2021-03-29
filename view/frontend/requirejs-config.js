@@ -1,6 +1,6 @@
 var config = {
     paths: {
-        slick: 'AHT_Testimonial/js/slick'
+        slick: 'AHT_Testimonials/js/slick'
     },
     shim: {
         slick: {

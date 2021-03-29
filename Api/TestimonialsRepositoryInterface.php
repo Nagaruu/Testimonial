@@ -33,6 +33,15 @@ interface TestimonialsRepositoryInterface
     // public function getList(\Magento\Framework\Api\SearchCriteriaInterface $searchCriteria);
 
     /**
+     * Get List
+     *
+     * @param \AHT\Testimonials\Api\Data\TestimonialsInterface $Post
+     * @return bool true on success
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
+    public function getList();
+
+    /**
      * Delete Post.
      *
      * @param \AHT\Testimonials\Api\Data\TestimonialsInterface $Post
@@ -50,4 +59,23 @@ interface TestimonialsRepositoryInterface
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function deleteById($PostId);
+
+    /**
+     * Create post.
+     *
+     * @param \AHT\Portfolio\Api\Data\PortfolioInterface $post
+     * 
+     * @return \AHT\Portfolio\Api\Data\PortfolioInterface
+     */
+    public function createPost(\AHT\Testimonials\Api\Data\TestimonialsInterface $post);
+
+    /**
+     * Update post
+     *
+     * @param String $id
+     * @param \AHT\Blog\Api\Data\PostInterface $post
+     * 
+     * @return null
+     */
+    public function updatePost(String $id, \AHT\Portfolio\Api\Data\PortfolioInterface $post);
 }

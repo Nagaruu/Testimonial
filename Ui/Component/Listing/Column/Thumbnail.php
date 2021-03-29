@@ -43,7 +43,7 @@ class Thumbnail extends \Magento\Ui\Component\Listing\Columns\Column
                 $testimonials = new \Magento\Framework\DataObject($item);
                 $item[$fieldName . '_src'] = $this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA)."testimonials/index/".$testimonials['images'];
                 $item[$fieldName . '_orig_src'] = $this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA)."testimonials/index/".$testimonials['images'];
-                $item[$fieldName . '_link'] = $this->urlBuilder->getUrl("testimonials/index/edit",
+                $item[$fieldName . '_link'] = $this->urlBuilder->getUrl("testimonials/tmp/index/edit",
                     ['id' => $testimonials['id']]
                 );
                 $item[$fieldName . '_alt'] = $testimonials['name'];

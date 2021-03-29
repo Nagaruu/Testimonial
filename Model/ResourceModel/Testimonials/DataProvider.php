@@ -8,6 +8,9 @@ namespace AHT\Testimonials\Model\ResourceModel\Testimonials;
 use AHT\Testimonials\Model\ResourceModel\Testimonials\CollectionFactory;
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Ui\DataProvider\Modifier\PoolInterface;
+use Magento\Framework\App\ObjectManager;
+use AHT\Testimonials\Model\ResourceModel\Testimonials\FileInfo;
+use Magento\Store\Model\StoreManagerInterface;
 
 /**
  * Class DataProvider
@@ -27,8 +30,9 @@ class DataProvider extends \Magento\Ui\DataProvider\ModifierPoolDataProvider
     /**
      * @var array
      */
-    protected $_loadedData;
-
+    protected $loadedData;
+    private $fileInfo;
+    protected $_storeManager;   
     /**
      * Constructor
      *
@@ -47,13 +51,32 @@ class DataProvider extends \Magento\Ui\DataProvider\ModifierPoolDataProvider
         $requestFieldName,
         CollectionFactory $blockCollectionFactory,
         DataPersistorInterface $dataPersistor,
+        StoreManagerInterface $storeManager,
         array $meta = [],
         array $data = [],
         PoolInterface $pool = null
     ) {
         $this->collection = $blockCollectionFactory->create();
         $this->dataPersistor = $dataPersistor;
+        $this->_storeManager = $storeManager;
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data, $pool);
+    }
+
+    public function convertValues($banner)
+    {
+        $fileName = $banner->getImages();
+        $image = [];
+        if ($this->getFileInfo()->isExist($fileName)) {
+            $stat = $this->getFileInfo()->getStat($fileName);
+            $mime = $this->getFileInfo()->getMimeType($fileName);
+            $image[0]['name'] = $fileName;
+            $image[0]['url'] = $this->_storeManager->getStore()->getBaseUrl()."pub/media/testimonials/index/".$fileName;
+            $image[0]['size'] = isset($stat) ? $stat['size'] : 0;
+            $image[0]['type'] = $mime;
+        }
+        $banner->setImage($image);
+
+        return $banner;
     }
 
     /**
@@ -62,19 +85,34 @@ class DataProvider extends \Magento\Ui\DataProvider\ModifierPoolDataProvider
      * @return array
      */
     public function getData()
-    {
-        if (isset($this->_loadedData)) {
-            return $this->_loadedData;
+    {  
+        if (isset($this->loadedData)) {
+            return $this->loadedData;
         }
-        // Get all record from collection
         $items = $this->collection->getItems();
 
-        foreach ($items as $testimonials) {
-            
-            $this->_loadedData[$testimonials->getId()] = $testimonials->getData();
+        /** @var \Magento\Cms\Model\Block $block */
+       foreach ($items as $banner) {
+            $banner = $this->convertValues($banner);
 
-            $this->dataPersistor->clear('testimonials');
+            $this->loadedData[$banner->getId()] = $banner->getData();
         }
-        return $this->_loadedData;
+
+        $data = $this->dataPersistor->get('index');
+        if (!empty($data)) {
+            $block = $this->collection->getNewEmptyItem();
+            $block->setData($data);
+            $this->loadedData[$block->getId()] = $block->getData();
+            $this->dataPersistor->clear('index');
+        }
+
+        return $this->loadedData;
+    }
+    private function getFileInfo()
+    {
+        if ($this->fileInfo === null) {
+            $this->fileInfo = ObjectManager::getInstance()->get(FileInfo::class);
+        }
+        return $this->fileInfo;
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace AHT\Testimonialư\Controller\Index;
+namespace AHT\Testimonials\Controller\Index;
 
 class Create extends \Magento\Framework\App\Action\Action
 {

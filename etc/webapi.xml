@@ -14,4 +14,37 @@
             <resource ref="anonymous" />
         </resources>
     </route>
+    <route url="/V1/Testimonials/GetList" method="GET">
+        <service class="AHT\Testimonials\Api\TestimonialsRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="POST" url="/V1/Testimonials">
+		<service class="AHT\Testimonials\Api\TestimonialsRepositoryInterface" method="createPost"/>
+		<resources>
+            <resource ref="anonymous"/>
+        </resources>
+	</route>
+
+	<!-- <route method="PUT" url="/V1/Testimonials/:postId">
+		<service class="AHT\Testimonials\Api\TestimonialsRepositoryInterface" method="updatePost"/>
+		<resources>
+            <resource ref="anonymous"/>
+        </resources>
+	</route> -->
+
+	<!-- <route method="DELETE" url="/V1/Testimonials/:postId">
+		<service class="AHT\Testimonials\Api\TestimonialsRepositoryInterface" method="deletePostById"/>
+		<resources>
+            <resource ref="anonymous"/>
+        </resources>
+	</route>
+
+	<route url="/V1/customers" method="POST">
+		<service class="Magento\Customer\Api\AccountManagementInterface" method="createAccount"/>
+		<resources>
+			<resource ref="anonymous"/>
+		</resources>
+	</route> -->
 </routes>

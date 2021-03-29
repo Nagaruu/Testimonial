@@ -47,5 +47,5 @@
 
     <preference for='AHT\Testimonials\Api\TestimonialsRepositoryInterface' type='AHT\Testimonials\Model\TestimonialsRepository' />
     <preference for='AHT\Testimonials\Api\CustomerRepositoryInterface' type='AHT\Testimonials\Model\CustomerRepository' />
-
+    <preference for="AHT\Testimonials\Api\Data\TestimonialsInterface" type="AHT\Testimonials\Model\Testimonials"/>
 </config>

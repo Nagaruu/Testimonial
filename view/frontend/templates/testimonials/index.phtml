@@ -5,7 +5,7 @@
         <?php
         foreach ( $block->getAll() as $item) {
             echo "<li>";
-            echo "<img src=".$block->getBaseUrl()."pub/media/testimonials/index/".$item->getImage().">";
+            echo "<img src=".$block->getBaseUrl()."pub/media/testimonials/index/".$item->getImages().">";
             echo "<p>".$item->getName()."</p>";
             echo "<p>".$item->getEmail()."</p>";
             echo "<p>".$item->getContact()."</p>";
@@ -32,4 +32,3 @@
         });
     });
 </script>
-

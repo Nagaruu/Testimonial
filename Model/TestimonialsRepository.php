@@ -92,6 +92,27 @@ class TestimonialsRepository implements TestimonialsRepositoryInterface
         if (!$testimonials->getId()) {
             throw new NoSuchEntityException(__('The CMS Testimonials with the "%1" ID doesn\'t exist.', $testimonialsId));
         }
+
+        $result = $testimonials->toArray();
+
+        return json_encode($result);
+        
+    }
+
+    /**
+     * Load Testimonials data by given Testimonials Identity
+     *
+     * @param string $testimonialsId
+     * @return testimonials
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
+    public function getTestimonialsById($testimonialsId)
+    {
+        $testimonials = $this->TestimonialsFactory->create();
+        $testimonials->load($testimonialsId);
+        if (!$testimonials->getId()) {
+            throw new NoSuchEntityException(__('The CMS Testimonials with the "%1" ID doesn\'t exist.', $testimonialsId));
+        }
         return $testimonials;
     }
 
@@ -107,7 +128,7 @@ class TestimonialsRepository implements TestimonialsRepositoryInterface
     {
         /** @var \AHT\Testimonials\Model\ResourceModel\Testimonials\Collection $collection */
         $collection = $this->TestimonialsCollectionFactory->create();
-        return $collection;
+        return $collection->getData();
     }
 
     /**
@@ -141,5 +162,29 @@ class TestimonialsRepository implements TestimonialsRepositoryInterface
     public function deleteById($testimonialsId)
     {
         return $this->delete($this->getById($testimonialsId));
+    }
+
+    /**
+     * Create post.
+     *  
+     * @return \AHT\Portfolio\Api\Data\PortfolioInterface
+     * 
+     * @throws LocalizedException
+     */
+    public function createPost(\AHT\Testimonials\Api\Data\TestimonialsInterface $post)
+    {
+        try {
+            $this->resource->save($post);
+        } catch (\Exception $exception) {
+            throw new CouldNotSaveException(
+                __('Could not save the Post: %1', $exception->getMessage()),
+                $exception
+            );
+        }
+        return json_encode(array(
+            "status" => 200,
+            "message" => $post->getData()
+        ));
+        
     }
 }
