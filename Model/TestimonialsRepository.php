@@ -187,4 +187,24 @@ class TestimonialsRepository implements TestimonialsRepositoryInterface
         ));
         
     }
+
+    public function updatePost(String $id,\AHT\Testimonials\Api\Data\TestimonialsInterface $post)
+    {
+
+        try {
+            $objPost = $this->PostFactory->create();
+            $id = intval($id);
+            $objPost->setId($id);
+            //Set full collum
+            $objPost->setData($post->getData());
+            $this->resource->save($objPost);
+
+            return $objPost->getData();
+        } catch (\Exception $exception) {
+            throw new CouldNotSaveException(
+                __('Could not save the Post: %1', $exception->getMessage()),
+                $exception
+            );
+        }
+    }
 }

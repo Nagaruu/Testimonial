@@ -14,10 +14,10 @@
         <item name="label" xsi:type="string" translate="true">Page Information</item>
         <item name="template" xsi:type="string">templates/form/collapsible</item>
     </argument>
-    <item name="config" xsi:type="array">
+    <!-- <item name="config" xsi:type="array">
         <item name="dataScope" xsi:type="string">data</item>
         <item name="namespace" xsi:type="string">aht_testimonials_form</item>
-    </item>
+    </item> -->
     <settings>
         <buttons>
             <button name="save" class="AHT\Testimonials\Block\Adminhtml\Testimonials\Edit\SaveButton"/>
@@ -155,12 +155,8 @@
         <field name="image" sortOrder="2" formElement="imageUploader" >
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                <item name="isMultipleFiles" xsi:type="boolean">true</item>
-                <item name="openDialogTitle" xsi:type="string" translate="true">string</item>
+    
                     <item name="source" xsi:type="string">index</item>
-                     <!-- <item name="validation" xsi:type="array">
-                        <item name="required-entry" xsi:type="boolean">true</item>
-                    </item> -->
                 </item>
             </argument>
             <settings>

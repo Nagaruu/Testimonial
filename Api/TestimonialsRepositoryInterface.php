@@ -77,5 +77,5 @@ interface TestimonialsRepositoryInterface
      * 
      * @return null
      */
-    public function updatePost(String $id, \AHT\Portfolio\Api\Data\PortfolioInterface $post);
+    public function updatePost(String $id, \AHT\Testimonials\Api\Data\TestimonialsInterface $post);
 }
