@@ -1,25 +1,25 @@
 <h3>Testimonial Create Form</h3>
 <div class="testimonial-create-form">
-    <form class="testimonial-blog-create" method="post" enctype="multipart/form-data" action="<?= $block->getUrl('testimonial/blog/save')?>">
+    <form class="testimonial-blog-create" method="post" enctype="multipart/form-data" action="<?= $block->getUrl('testimonials/index/save')?>">
         <div class="testimonial-blog-create-right">
             <img src="" alt="" class="image-upload" />
         </div>
 
         <div class="testimonial-blog-create-left">
-            <label for="blog_name">First Name</label>
-            <input type="text" name="blog_name" placeholder="Your name..">
+            <label for="name">First Name</label>
+            <input type="text" name="name" placeholder="Your name..">
 
-            <label for="blog_email">Email</label>
-            <input type="text" name="blog_email" placeholder="Your email..">
+            <label for="email">Email</label>
+            <input type="text" name="email" placeholder="Your email..">
 
-            <label for="blog_designation">Designation</label>
-            <input type="text" name="blog_designation" placeholder="Your designation..">
+            <label for="designation">Designation</label>
+            <input type="text" name="designation" placeholder="Your designation..">
 
-            <label for="blog_contact">Designation</label>
-            <input type="number" name="blog_contact" placeholder="Your contact..">
+            <label for="contact">Designation</label>
+            <input type="number" name="contact" placeholder="Your contact..">
 
-            <label for="blog_message">Designation</label>
-            <textarea name="blog_message" rows="10" cols="30" placeholder="This is your message.."></textarea>
+            <label for="message">Designation</label>
+            <textarea name="message" rows="10" cols="30" placeholder="This is your message.."></textarea>
 
             <input type="submit" name="createBtn" class="createBtn" value="Submit">
         </div>

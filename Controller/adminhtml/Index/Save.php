@@ -100,9 +100,12 @@ class Save extends \AHT\Testimonials\Controller\Adminhtml\Testimonials implement
                 $data2['images'] = $data['image'][0]['name'];
                 $imageName = $data2['images'];
             }else{
-                $imageName = '';
+                $imageName = null;
             }
             $data['images'] = $imageName;
+            // echo "<pre>";
+            // var_dump($data->getData());
+            // die();
             $model->setData($data);      
             
             try {

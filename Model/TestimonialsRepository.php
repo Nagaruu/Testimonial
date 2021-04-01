@@ -93,9 +93,7 @@ class TestimonialsRepository implements TestimonialsRepositoryInterface
             throw new NoSuchEntityException(__('The CMS Testimonials with the "%1" ID doesn\'t exist.', $testimonialsId));
         }
 
-        $result = $testimonials->toArray();
-
-        return json_encode($result);
+        return $testimonials;
         
     }
 
@@ -106,6 +104,7 @@ class TestimonialsRepository implements TestimonialsRepositoryInterface
      * @return testimonials
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
+    
     public function getTestimonialsById($testimonialsId)
     {
         $testimonials = $this->TestimonialsFactory->create();

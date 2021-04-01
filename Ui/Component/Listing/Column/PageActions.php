@@ -101,6 +101,7 @@ class PageActions extends Column
                         '__disableTmpl' => true,
                     ];
                 }
+                
                 if (isset($item['identifier'])) {
                     $item[$name]['preview'] = [
                         'href' => $this->scopeUrlBuilder->getUrl(
