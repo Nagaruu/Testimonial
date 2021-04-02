@@ -3,6 +3,8 @@
 namespace AHT\Testimonials\Controller\Index;
 
 use Magento\Framework\App\Action\Context;
+use  Magento\Framework\App\Filesystem\DirectoryList;
+
 
 class Save extends \Magento\Framework\App\Action\Action
 {
@@ -24,6 +26,9 @@ class Save extends \Magento\Framework\App\Action\Action
      * @var \Magento\Store\Model\StoreManagerInterface
      */
     protected $_storeManager;
+    protected $imageUploader;
+    protected $uploaderFactory;
+    protected $adapterFactory;
 
     private $_cacheTypeList;
     private $_cacheFrontendPool;
@@ -47,7 +52,11 @@ class Save extends \Magento\Framework\App\Action\Action
         \Magento\Framework\Controller\ResultFactory $result,
         \Magento\Framework\App\Cache\TypeListInterface $cacheTypeList,
         \Magento\Framework\Filesystem $filesystem,
-        \Magento\Framework\App\Cache\Frontend\Pool $cacheFrontendPool
+        \Magento\Framework\App\Cache\Frontend\Pool $cacheFrontendPool,
+        \Magento\MediaStorage\Model\File\UploaderFactory $uploaderFactory,
+            \Magento\Framework\Image\AdapterFactory $adapterFactory,
+
+        \AHT\Testimonials\Model\ResourceModel\Testimonials\ImageUploader $imageUploader
     )
     {
         $this->_blogFactory = $blogFactory;
@@ -58,15 +67,35 @@ class Save extends \Magento\Framework\App\Action\Action
         $this->_cacheTypeList = $cacheTypeList;
         $this->_cacheFrontendPool = $cacheFrontendPool;
 
+        $this->uploaderFactory = $uploaderFactory;
+        $this->adapterFactory = $adapterFactory;
+        $this->imageUploader = $imageUploader;
+
         parent::__construct($context);
     }
 
     public function execute()
     {
         $post = $this->getRequest()->getPostValue();
-        var_dump($post);
 
         $blog = $this->_blogFactory->create();
+        $imageId = $this->_request->getParam('param_name', 'images');
+        
+        
+        try {
+            $result = $this->imageUploader->saveFileToTmpDir($imageId);
+            echo "<pre>";
+            var_dump($result);
+
+        } catch (\Exception $e) {
+            $result = ['error' => $e->getMessage(), 'errorcode' => $e->getCode()];
+        }
+
+        $imageName = $_FILES['images']['name'];
+
+        if(!isset($_FILES['images']['name'])){
+            $_FILES['images']['name'] = '';
+        }
 
         if (isset($_POST['createBtn'])) {
             $data = [
@@ -75,13 +104,17 @@ class Save extends \Magento\Framework\App\Action\Action
                 'designation' => $post['designation'],
                 'contact' => $post['contact'],
                 'message' => $post['message'],
-                // 'images' => $_FILES['images']['name'],
+                'images' => $_FILES['images']['name'],
                 'customerid' => 1
             ];
             $blog->setData($data);
         }
 
         $blog->save($data);
+
+        if ($imageName) {
+            $this->imageUploader->moveFileFromTmp($imageName);
+        }
 
         $types = array('config','layout','block_html','collections','reflection','db_ddl','compiled_config','eav','config_integration','config_integration_api','full_page','translate','config_webservice','vertex');
         foreach ($types as $type) {

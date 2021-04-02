@@ -15,7 +15,7 @@ class UpgradeData implements UpgradeDataInterface {
 	public function upgrade(ModuleDataSetupInterface $setup, ModuleContextInterface $context) {
 		if (version_compare($context->getVersion(), '1.0.2', '<')) {
 			$data = [
-				'name' => "Magento 2 Events"
+				'title' => "Magento 2 Events"
 			];
 			$post = $this->_postFactory->create();
 			$post->addData($data)->save();

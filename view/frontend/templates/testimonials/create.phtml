@@ -15,10 +15,10 @@
             <label for="designation">Designation</label>
             <input type="text" name="designation" placeholder="Your designation..">
 
-            <label for="contact">Designation</label>
+            <label for="contact">Contact</label>
             <input type="number" name="contact" placeholder="Your contact..">
 
-            <label for="message">Designation</label>
+            <label for="message">Message</label>
             <textarea name="message" rows="10" cols="30" placeholder="This is your message.."></textarea>
 
             <input type="submit" name="createBtn" class="createBtn" value="Submit">
@@ -30,15 +30,19 @@
 
         // Upload Image
         $('.testimonial-blog-create-right').click(() => {
+            //Click chon file
             const inputFile = document.createElement('input');
             inputFile.setAttribute('type', 'file');
-            inputFile.setAttribute('name', 'blog_image');
+            inputFile.setAttribute('name', 'images');
             inputFile.setAttribute('class', 'd-none');
             inputFile.click();
+
+            //Upload duoc anh;
             $('.testimonial-blog-create-right').append(inputFile);
             inputFile.addEventListener('change', (e) => {
                 if(inputFile.files.length > 0) {
                     const file = inputFile.files[0];
+                    console.log(file);
                     var reader = new FileReader();
                     reader.onload = function(e) {
                         $('.image-upload').attr('src', e.target.result);

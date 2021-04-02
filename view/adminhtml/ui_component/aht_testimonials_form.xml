@@ -147,6 +147,9 @@
                 </item>
             </argument>
             <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
                 <dataType>text</dataType>
                 <label translate="true">Message</label>
                 <dataScope>message</dataScope>
@@ -155,7 +158,6 @@
         <field name="image" sortOrder="2" formElement="imageUploader" >
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-    
                     <item name="source" xsi:type="string">index</item>
                 </item>
             </argument>

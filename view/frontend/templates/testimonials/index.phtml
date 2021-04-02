@@ -10,7 +10,6 @@
             echo "<img src=".$block->getBaseUrl()."pub/media/testimonials/index/".$item->getImages().">";
             echo "<p class='testimonials-message'>".$item->getMessage()."</p>";
             echo "<p class='customer-name'>".$block->getNameCustomer($item->getCustomerid())."</p>";
-            // echo "<a href=".$block->getBaseUrl()."testimonials/index/edit/id/".$item->getId().">Edit</a>";
             echo "</li>";
         }
         ?>
@@ -22,7 +21,7 @@
     ], function ($) {
         $(document).ready(function () {
             $(".testimonial-blog").slick({
-                autoplay: true,
+                autoplay: false,
                 slidesToShow: 1,
                 slidesToScroll: 1,
                 autoplay: true,

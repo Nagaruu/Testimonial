@@ -85,7 +85,9 @@ class Save extends \AHT\Testimonials\Controller\Adminhtml\Testimonials implement
             }
             /** @var \Magento\Cms\Model\Block $model */
             $model = $this->blockFactory->create();
-
+            $aaa = $this->_request->getParam('param_name', 'images');
+            var_dump($aaa);
+            die();
             $id = $this->getRequest()->getParam('id');
             if ($id) {
                 try {
