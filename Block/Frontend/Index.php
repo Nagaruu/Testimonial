@@ -20,8 +20,6 @@ class Index extends \Magento\Framework\View\Element\Template
 
     protected $customerResourceFactory;
 
-    // protected $testimonials;
-
     public function __construct(
         Template\Context $context,
         \AHT\Testimonials\Model\ResourceModel\Testimonials\CollectionFactory $testimonialsColectionFactory,

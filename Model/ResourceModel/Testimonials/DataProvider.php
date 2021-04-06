@@ -65,6 +65,7 @@ class DataProvider extends \Magento\Ui\DataProvider\ModifierPoolDataProvider
     public function convertValues($banner)
     {
         $fileName = $banner->getImages();
+
         $image = [];
         if ($this->getFileInfo()->isExist($fileName)) {
             $stat = $this->getFileInfo()->getStat($fileName);
@@ -96,14 +97,17 @@ class DataProvider extends \Magento\Ui\DataProvider\ModifierPoolDataProvider
             $banner = $this->convertValues($banner);
 
             $this->loadedData[$banner->getId()] = $banner->getData();
+            // echo "<pre>";
+            // var_dump($this->loadedData[$banner->getId()]);
+            // die();
         }
 
-        $data = $this->dataPersistor->get('index');
+        // $data = $this->dataPersistor->get('index');
         if (!empty($data)) {
             $block = $this->collection->getNewEmptyItem();
             $block->setData($data);
             $this->loadedData[$block->getId()] = $block->getData();
-            $this->dataPersistor->clear('index');
+            // $this->dataPersistor->clear('index');
         }
 
         return $this->loadedData;

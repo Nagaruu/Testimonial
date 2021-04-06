@@ -1,18 +1,25 @@
-<?xml version="1.0"?>
-<config
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * system
+ *
+ * @copyright Copyright © 2020 MAGETOP. All rights reserved.
+ * @author    info@magetop.com
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
-        <tab id="aht" translate="label" sortOrder="500">
+        <tab id="aht" translate="label" sortOrder="10">
             <label>AHT</label>
         </tab>
-        <section id="testimonials_pending" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
-            <label>testimonials</label>
+        <section id="testimonials" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Testimonials Config</label>
             <tab>aht</tab>
-            <resource>AHT_testimonials::testimonials</resource>
-            <group id="testimonials" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Testimonials Pending page settings</label>
-                <field id="is_enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Is Enabled</label>
+            <resource>AHT_Testimonials::testimonials</resource>
+            <group id="setting" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>General Setting</label>
+                <field id="testimonials" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
             </group>

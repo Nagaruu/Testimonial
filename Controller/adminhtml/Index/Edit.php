@@ -17,7 +17,7 @@ class Edit extends \AHT\Testimonials\Controller\Adminhtml\Testimonials implement
      */
     protected $resultPageFactory;
     protected $testimonialsFactory;
-
+    protected $testimonialsResourceFactory;
     /**
      * @param \Magento\Backend\App\Action\Context $context
      * @param \Magento\Framework\Registry $coreRegistry
@@ -27,10 +27,12 @@ class Edit extends \AHT\Testimonials\Controller\Adminhtml\Testimonials implement
         \Magento\Backend\App\Action\Context $context,
         \Magento\Framework\Registry $coreRegistry,
         \Magento\Framework\View\Result\PageFactory $resultPageFactory,
-        \AHT\Testimonials\Model\TestimonialsFactory $testimonialsFactory
+        \AHT\Testimonials\Model\TestimonialsFactory $testimonialsFactory,
+        \AHT\Testimonials\Model\ResourceModel\TestimonialsFactory $testimonialsResourceFactory
     ) {
         $this->resultPageFactory = $resultPageFactory;
         $this->testimonialsFactory = $testimonialsFactory;
+        $this->testimonialsResourceFactory = $testimonialsResourceFactory;
         parent::__construct($context, $coreRegistry);
     }
 
@@ -45,11 +47,13 @@ class Edit extends \AHT\Testimonials\Controller\Adminhtml\Testimonials implement
         // 1. Get ID and create model
         $id = $this->getRequest()->getParam('id');
         $model = $this->testimonialsFactory->create();
+        $modelResource = $this->testimonialsResourceFactory->create();
 
         // 2. Initial checking
         if ($id) {
-            $model->load($id);
-            // var_dump($model->getData());
+            
+            $modelResource->load($model,$id);
+            // var_dump($model->getId());
             // die();
             if (!$model->getId()) {
                 $this->messageManager->addErrorMessage(__('This block no longer exists.'));

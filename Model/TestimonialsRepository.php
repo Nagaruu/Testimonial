@@ -66,7 +66,6 @@ class TestimonialsRepository implements TestimonialsRepositoryInterface
      */
     public function save(\AHT\Testimonials\Api\Data\TestimonialsInterface $testimonials)
     {
-
         try {
             $this->resource->save($testimonials);
         } catch (\Exception $exception) {
