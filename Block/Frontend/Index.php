@@ -49,18 +49,34 @@ class Index extends \Magento\Framework\View\Element\Template
         return $this;
     }
 
+    /**
+     * Get all record from collection
+     *
+     * @return $collection
+     */
+
     public function getAll() {
         $collecion = $this->testimonialsColectionFactory->create();
         return $collecion;
     }
 
+    /**
+     * Get name customer 
+     *
+     * @return $customer['customer_name']
+     */
     public function getNameCustomer($id) {
         $customer = $this->customerFactory->create();
         $customerResource = $this->customerResourceFactory->create();
         $customerResource->load($customer,$id);
-
         return $customer['customer_name'];
     }
+
+    /**
+     * Get by id
+     *
+     * @return $collection
+     */
 
     public function getById($id) {
         $id = $this->getRequest()->getParams();
@@ -69,10 +85,20 @@ class Index extends \Magento\Framework\View\Element\Template
         return $collection;
     }
 
+    /**
+     * Get url create
+     *
+     * @return $url
+     */
     public function getCreate() {
-            return $this->getUrl('testimonials/index/create');
+        return $this->getUrl('testimonials/index/create');
     }
 
+    /**
+     * Get url edit
+     *
+     * @return $url
+     */
     public function getEdit() {
         return $this->getUrl('testimonials/index/edit');
     }

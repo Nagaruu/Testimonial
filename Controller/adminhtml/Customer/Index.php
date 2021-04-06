@@ -15,6 +15,10 @@ class Index extends \Magento\Backend\App\Action {
         $this->pageFactory = $pageFactory;
     }
 
+    /**
+     *
+     * @return $tempPage
+     */
     public function execute()
     {
        $tempPage = $this->pageFactory->create();

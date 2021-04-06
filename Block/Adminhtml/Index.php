@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
 namespace AHT\Testimonials\Block\Adminhtml;
 
 class Index extends \Magento\Backend\Block\Widget\Grid\Container

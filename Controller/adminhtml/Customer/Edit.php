@@ -49,8 +49,6 @@ class Edit extends \AHT\Testimonials\Controller\Adminhtml\Testimonials implement
         // 2. Initial checking
         if ($id) {
             $model->load($id);
-            // var_dump($model->getData());
-            // die();
             if (!$model->getId()) {
                 $this->messageManager->addErrorMessage(__('This block no longer exists.'));
                 /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */

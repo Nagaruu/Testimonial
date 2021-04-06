@@ -42,12 +42,9 @@
             inputFile.addEventListener('change', (e) => {
                 if(inputFile.files.length > 0) {
                     const file = inputFile.files[0];
-                    console.log(file);
                     var reader = new FileReader();
                     reader.onload = function(e) {
                         $('.image-upload').attr('src', e.target.result);
-                        // $('.avatar-icon-plus').addClass('d-none');
-                        // $('input[type="file"]').addClass('d-none');
                     }
                     reader.readAsDataURL(file);
                 }

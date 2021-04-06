@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
 namespace AHT\Testimonials\Block\Frontend;
 
 class Edit extends \Magento\Framework\View\Element\Template
@@ -22,11 +27,19 @@ class Edit extends \Magento\Framework\View\Element\Template
         return parent::__construct($context,$data);
     }
 
+    /**
+     * Execute
+     */
     public function execute()
     {
         return $this->_pageFactory->create();
     }
 
+    /**
+     * Get By Id
+     *
+     * @return $result
+     */
     public function getById()
     {
         $id = $this->_coreRegistry->registry('id');

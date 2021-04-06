@@ -27,14 +27,14 @@
         </resources>
 	</route>
 
-	<!-- <route method="PUT" url="/V1/Testimonials/:postId">
+	<route method="PUT" url="/V1/Testimonials/:postId">
 		<service class="AHT\Testimonials\Api\TestimonialsRepositoryInterface" method="updatePost"/>
 		<resources>
             <resource ref="anonymous"/>
         </resources>
-	</route> -->
+	</route>
 
-	<!-- <route method="DELETE" url="/V1/Testimonials/:postId">
+	<route method="DELETE" url="/V1/Testimonials/:postId">
 		<service class="AHT\Testimonials\Api\TestimonialsRepositoryInterface" method="deletePostById"/>
 		<resources>
             <resource ref="anonymous"/>
@@ -46,5 +46,6 @@
 		<resources>
 			<resource ref="anonymous"/>
 		</resources>
-	</route> -->
+	</route>
+    
 </routes>
